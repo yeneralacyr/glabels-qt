@@ -1,0 +1,106 @@
+# Builds a Windows installer (NSIS .exe) and a portable .zip, and uploads
+# them as workflow artifacts (Actions tab -> run -> Artifacts).
+#
+# Uses the same toolchain combination as the windows-2022 job in
+# build-tests.yml (MSVC + Qt 6.2 + vcpkg), which is known to build.
+
+name: Windows Installer
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  windows-installer:
+    runs-on: windows-2022
+
+    env:
+      BUILD_DIR: ${{ github.workspace }}/build
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        # Full depth for auto versioning
+        fetch-depth: 0
+
+    - name: Pre-install vcpkg
+      shell: bash
+      run: git clone --depth 1 https://github.com/microsoft/vcpkg.git
+
+    - name: Restore vcpkg cache
+      uses: actions/cache@v4
+      with:
+        path: |
+          ${{ github.workspace }}/vcpkg/installed
+          ${{ github.workspace }}/vcpkg/downloads
+        key: vcpkg-installer-${{ runner.os }}-${{ hashFiles('.github/workflows/windows-installer.yml') }}
+        restore-keys: |
+          vcpkg-installer-${{ runner.os }}-
+
+    - name: Install optional dependencies (vcpkg)
+      shell: bash
+      run: |
+        set -e
+        ./vcpkg/bootstrap-vcpkg.sh
+        ./vcpkg/vcpkg install pkgconf zlib libqrencode zint
+        echo "TOOLCHAIN_FILE=${{ github.workspace }}/vcpkg/scripts/buildsystems/vcpkg.cmake" >> $GITHUB_ENV
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '6.2.*'
+
+    - name: Ensure NSIS is available
+      shell: pwsh
+      run: |
+        if (-not (Get-Command makensis -ErrorAction SilentlyContinue)) {
+          $nsisDir = "${env:ProgramFiles(x86)}\NSIS"
+          if (-not (Test-Path "$nsisDir\makensis.exe")) {
+            choco install nsis -y --no-progress
+            if ($LASTEXITCODE -ne 0) { throw "NSIS installation failed" }
+          }
+          "$nsisDir" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+        }
+
+    - name: Configure CMake
+      run: >
+        cmake -B ${{ env.BUILD_DIR }}
+        -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_TOOLCHAIN_FILE=${{ env.TOOLCHAIN_FILE }}
+        -S ${{ github.workspace }}
+
+    - name: Build
+      run: cmake --build ${{ env.BUILD_DIR }} --config Release
+
+    - name: Smoke test
+      working-directory: ${{ env.BUILD_DIR }}
+      env:
+        QT_ASSUME_STDERR_HAS_CONSOLE: 1
+      run: ./glabels-batch/Release/glabels-batch-qt --Version
+
+    - name: Package (NSIS installer + ZIP)
+      working-directory: ${{ env.BUILD_DIR }}
+      run: cpack -C Release -G "NSIS;ZIP" --verbose
+
+    - name: Upload installer
+      uses: actions/upload-artifact@v4
+      with:
+        name: glabels-windows-installer-run${{ github.run_number }}
+        path: ${{ env.BUILD_DIR }}/*.exe
+        if-no-files-found: error
+
+    - name: Upload portable zip
+      uses: actions/upload-artifact@v4
+      with:
+        name: glabels-windows-portable-run${{ github.run_number }}
+        path: ${{ env.BUILD_DIR }}/*.zip
+        if-no-files-found: error
+
+    - name: Upload CPack logs on failure
+      if: failure()
+      uses: actions/upload-artifact@v4
+      with:
+        name: cpack-logs-run${{ github.run_number }}
+        path: ${{ env.BUILD_DIR }}/_CPack_Packages/**/*.log
+        if-no-files-found: ignore
