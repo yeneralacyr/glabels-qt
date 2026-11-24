@@ -35,6 +35,10 @@ private slots:
         void customFields();
         void mergeBackend();
         void backup();
+        void integrityAndInspect();
+        void restore();
+        void automaticBackups();
+        void dailyAndExit();
 
 private:
         QTemporaryDir mTmp;

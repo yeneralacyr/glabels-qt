@@ -57,6 +57,10 @@ namespace glabels
                 /////////////////////////////////
                 void setModel( model::Model* model, UndoRedoModel* undoRedoModel );
 
+                /// Insert ${key} at the cursor of the edited text / barcode object.
+                /// Returns false if no single text or barcode object is being edited.
+                bool insertField( const QString& key );
+
 
                 /////////////////////////////////
                 // Private methods

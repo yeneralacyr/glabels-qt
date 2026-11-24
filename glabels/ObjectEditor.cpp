@@ -21,6 +21,11 @@
 
 #include "ObjectEditor.hpp"
 
+#include <QTextCursor>
+
+#include <algorithm>
+#include <QTextEdit>
+
 #include "UndoRedoModel.hpp"
 
 #include "model/Model.hpp"
@@ -717,6 +722,10 @@ namespace glabels
 
                         mUndoRedoModel->checkpoint( tr("Text") );
 
+                        // Remember size-related properties to grow the box with the text (below)
+                        double oldFontSize = mObject->fontSize();
+                        double oldLineSpacing = mObject->textLineSpacing();
+
                         QTextOption::WrapMode wrapMode;
                         switch (textWrapModeCombo->currentIndex())
                         {
@@ -738,8 +747,79 @@ namespace glabels
                         mObject->setTextAutoShrink( textAutoShrinkCheck->isChecked() );
                         mObject->setText( textEdit->toPlainText() );
 
+                        // A larger font in a box that is too small is shrunk back (auto-shrink) or cut off,
+                        // so the size change seems to do nothing. Grow the box with the text instead;
+                        // never shrink it automatically (the user may have sized it on purpose).
+                        if ( dynamic_cast<model::ModelTextObject*>( mObject ) )
+                        {
+                                double h = mObject->h().pt();
+                                double wanted = h;
+                                double grow = ( mObject->fontSize() / oldFontSize ) *
+                                              ( mObject->textLineSpacing() / oldLineSpacing );
+                                if ( grow > 1.0 )
+                                {
+                                        wanted = h * grow;
+                                }
+                                wanted = std::max( wanted, mObject->naturalSize().h().pt() );
+
+                                // Stay on the label if possible
+                                double room = mModel->h().pt() - mObject->y0().pt();
+                                if ( room > h )
+                                {
+                                        wanted = std::min( wanted, room );
+                                }
+                                if ( wanted > h + 0.01 )
+                                {
+                                        mObject->setSize( mObject->w(), model::Distance::pt( wanted ) );
+                                }
+                        }
+
                         mBlocked = false;
                 }
+        }
+
+
+        bool ObjectEditor::insertField( const QString& key )
+        {
+                if ( !mObject )
+                {
+                        return false;
+                }
+                QTextEdit* edit = nullptr;
+                if ( dynamic_cast<model::ModelTextObject*>( mObject ) )
+                {
+                        edit = textEdit;
+                }
+                else if ( dynamic_cast<model::ModelBarcodeObject*>( mObject ) )
+                {
+                        edit = barcodeDataEdit;
+                }
+                if ( !edit )
+                {
+                        return false;
+                }
+
+                // After loading an object the cursor sits at the start; unless the user placed it
+                // somewhere, append to the end so fields come out in the order they were clicked.
+                QTextCursor cursor = edit->textCursor();
+                if ( cursor.position() == 0 && !edit->toPlainText().isEmpty() && !cursor.hasSelection() )
+                {
+                        cursor.movePosition( QTextCursor::End );
+                }
+
+                // Separate from the preceding word ("${AD} ${SOYAD}")
+                QString insert = "${" + key + "}";
+                int pos = cursor.position();
+                QString text = edit->toPlainText();
+                if ( !cursor.hasSelection() && pos > 0 && !text.at( pos - 1 ).isSpace() )
+                {
+                        insert.prepend( ' ' );
+                }
+
+                cursor.insertText( insert );
+                edit->setTextCursor( cursor );
+                edit->setFocus();
+                return true;
         }
 
 

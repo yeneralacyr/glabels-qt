@@ -1238,12 +1238,32 @@ namespace glabels
 
 
         ///
+        /// Preview record (display only)
+        ///
+        void
+        LabelEditor::setPreviewRecord( const merge::Record& record, bool enabled )
+        {
+                mPreviewRecord = record;
+                mPreviewEnabled = enabled;
+                update();
+        }
+
+
+        ///
         /// Draw Objects Layer
         ///
         void
         LabelEditor::drawObjectsLayer( QPainter* painter )
         {
-                mModel->draw( painter, true, merge::NullRecord(), model::Variables() );
+                if ( mPreviewEnabled )
+                {
+                        // Same rendering as printing, with the chosen member's data
+                        mModel->draw( painter, false, mPreviewRecord, mModel->variables() );
+                }
+                else
+                {
+                        mModel->draw( painter, true, merge::NullRecord(), model::Variables() );
+                }
         }
 
 

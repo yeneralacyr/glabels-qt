@@ -16,6 +16,7 @@ set (glabels_sources
   ColorPaletteItem.cpp
   ColorSwatch.cpp
   Cursors.cpp
+  CheckMarkDelegate.cpp
   CustomFieldsDialog.cpp
   EditVariableDialog.cpp
   FieldButton.cpp
@@ -25,7 +26,11 @@ set (glabels_sources
   ListReportDialog.cpp
   MainWindow.cpp
   MemberDialog.cpp
+  MemberFieldsPanel.cpp
   MemberLabel.cpp
+  MemberPickerDialog.cpp
+  MemberPrintDialog.cpp
+  MemberMaintenance.cpp
   MembersView.cpp
   MergeTableModel.cpp
   MergeView.cpp
@@ -69,6 +74,9 @@ set (glabels_qobject_headers
   ListReportDialog.hpp
   MainWindow.hpp
   MemberDialog.hpp
+  MemberFieldsPanel.hpp
+  MemberPickerDialog.hpp
+  MemberPrintDialog.hpp
   MembersView.hpp
   MergeTableModel.hpp
   MergeView.hpp

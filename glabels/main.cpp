@@ -20,6 +20,7 @@
 
 
 #include "MainWindow.hpp"
+#include "MemberMaintenance.hpp"
 
 #include "AppearanceModel.hpp"
 
@@ -109,6 +110,10 @@ int main( int argc, char **argv )
         glabels::merge::Factory::init();
         glabels::barcode::Backends::init();
         glabels::AppearanceModel::init();
+
+        // Member database: integrity check / recovery and daily automatic backup
+        glabels::MemberMaintenance::startup( nullptr );
+        QObject::connect( &app, &QCoreApplication::aboutToQuit, []{ glabels::MemberMaintenance::shutdown(); } );
 
 
         //

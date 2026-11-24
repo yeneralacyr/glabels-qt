@@ -7,6 +7,7 @@ set (merge_sources
   Factory.cpp
   Record.cpp
   Merge.cpp
+  MemberBackup.cpp
   MemberDatabase.cpp
   MemberDb.cpp
   None.cpp

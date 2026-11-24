@@ -22,6 +22,7 @@
 #define merge_MemberDatabase_hpp
 
 
+#include <QDateTime>
 #include <QList>
 #include <QMap>
 #include <QObject>
@@ -46,6 +47,15 @@ namespace glabels::merge
         ///
         /// One member record
         ///
+        struct BackupInfo
+        {
+                int       schemaVersion{ 0 };
+                int       totalMembers{ 0 };
+                int       activeMembers{ 0 };
+                QDateTime fileTime;
+        };
+
+
         struct Member
         {
                 qint64                 id{ 0 };       // 0 = not yet stored
@@ -87,6 +97,7 @@ namespace glabels::merge
                 /////////////////////////////////
         public:
                 static const QList<MemberField>& standardFields();
+                static int supportedSchemaVersion();
                 static QString idKey();          // "UYE_ID" (primary key exposed to merge)
                 static QString activeKey();      // "AKTIF"
                 static bool isValidCustomKey( const QString& key );
@@ -102,6 +113,22 @@ namespace glabels::merge
                 QString filePath() const;
                 QString lastError() const;
                 bool backupTo( const QString& destPath, QString* error );
+
+                /// Quick integrity check of the open database (PRAGMA quick_check)
+                bool checkIntegrity( QString* error );
+
+                /// True if anything was changed since the last successful backup
+                bool hasUnbackedChanges() const;
+
+                /// Validate a backup file without touching the live database
+                static bool inspectBackup( const QString& path, BackupInfo* info, QString* error );
+
+                /// Replace the live database with a backup. The current file (even if corrupt) is
+                /// first copied to preservePath so the operation can be undone.
+                bool restoreFrom( const QString& backupPath, const QString& preservePath, QString* error );
+
+                /// Number of members (all, including passive); -1 on error
+                int memberCount( QString* error );
 
 
                 /////////////////////////////////
@@ -129,12 +156,15 @@ namespace glabels::merge
                 /////////////////////////////////
         private:
                 bool createSchema( QString* error );
+                void closeConnection();
+                void markChanged();
                 bool fail( const QString& message, QString* error );
 
                 QString mConnectionName;
                 QString mFilePath;
                 QString mLastError;
                 bool    mOpen{ false };
+                bool    mUnbackedChanges{ false };
 
         };
 

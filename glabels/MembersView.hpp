@@ -69,6 +69,9 @@ namespace glabels
                 /// Print labels for these members using the program's Print page
                 void printLabelsRequested( const QList<qint64>& memberIds );
 
+                /// The user changed which members are selected (check marks)
+                void selectionEdited();
+
 
                 /////////////////////////////////
                 // Public
@@ -76,6 +79,13 @@ namespace glabels
         public:
                 /// Turkish-aware, accent-insensitive folding used for search
                 static QString foldForSearch( const QString& text );
+
+                /// Selected member ids in display order
+                QList<qint64> selectedMemberIds() const;
+
+                /// Take over the print selection made elsewhere (Print page, Merge page).
+                /// printable = members that can be printed (active); checks on other members are kept.
+                void syncFromPrintSelection( const QSet<qint64>& selected, const QSet<qint64>& printable );
 
 
                 /////////////////////////////////
@@ -87,6 +97,7 @@ namespace glabels
         private slots:
                 void onFilterChanged();
                 void onItemChanged( QStandardItem* item );
+                void onRowClicked( const QModelIndex& index );
                 void onDoubleClicked( const QModelIndex& index );
                 void onNewClicked();
                 void onEditClicked();
@@ -96,6 +107,10 @@ namespace glabels
                 void onClearChecksClicked();
                 void onCustomFieldsClicked();
                 void onBackupClicked();
+                void onRestoreClicked();
+                void onChangeBackupFolderClicked();
+                void onOpenBackupFolderClicked();
+                void updateBackupStatus();
                 void onPrintLabelsClicked();
                 void onPrintListClicked();
                 void updateActions();
@@ -112,6 +127,7 @@ namespace glabels
                 void fillFilterCombo( QComboBox* combo, const QString& key );
                 void editMember( qint64 id );
                 void showError( const QString& title, const QString& message );
+                bool confirmHiddenSelection( const QString& what );
 
                 QLineEdit*           mSearchEdit;
                 QComboBox*           mGroupCombo;
@@ -132,6 +148,7 @@ namespace glabels
                 QPushButton*         mRetryButton;
                 QLabel*              mStatusLabel;
                 QLabel*              mPathLabel;
+                QLabel*              mBackupLabel;
 
                 QStandardItemModel*  mItems;
                 MemberFilterProxy*   mProxy;

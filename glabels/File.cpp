@@ -25,6 +25,8 @@
 #include "SelectProductDialog.hpp"
 #include "TemplateDesigner.hpp"
 
+#include "merge/MemberDb.hpp"
+
 #include "model/FileUtil.hpp"
 #include "model/Model.hpp"
 #include "model/Settings.hpp"
@@ -62,6 +64,12 @@ namespace glabels
                         // Intelligently decide to rotate label by default
                         auto frame = tmplate.frame();
                         model->setRotate( frame->h() > frame->w() );
+
+                        // New labels start connected to the member database, so member fields
+                        // are available right away (another source can be chosen on the Merge page)
+                        merge::Merge* memberMerge = merge::MemberDb::create();
+                        memberMerge->setSource( "" );
+                        model->setMerge( memberMerge );
 
                         model->clearModified();
 

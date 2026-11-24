@@ -44,6 +44,11 @@ namespace glabels
         {
                 setWindowTitle( member.id == 0 ? "Yeni Üye" : "Üyeyi Düzenle" );
 
+                mErrorLabel = new QLabel();
+                mErrorLabel->setWordWrap( true );
+                mErrorLabel->setStyleSheet( "color: #c62828;" );
+                mErrorLabel->setVisible( false );
+
                 auto* form = new QFormLayout();
                 form->setFieldGrowthPolicy( QFormLayout::ExpandingFieldsGrow );
 
@@ -78,6 +83,15 @@ namespace glabels
                                 editor = edit;
                         }
                         editor->setToolTip( QString( "Etikette kullanmak için: ${%1}" ).arg( f.key ) );
+                        // An old error message must not stay on screen after the user edits the form
+                        if ( auto* line = qobject_cast<QLineEdit*>( editor ) )
+                        {
+                                connect( line, &QLineEdit::textEdited, this, [this] { mErrorLabel->setVisible( false ); } );
+                        }
+                        else if ( auto* text = qobject_cast<QPlainTextEdit*>( editor ) )
+                        {
+                                connect( text, &QPlainTextEdit::textChanged, this, [this] { mErrorLabel->setVisible( false ); } );
+                        }
                         mEditors.insert( f.key, editor );
                         form->addRow( f.label + ":", editor );
                 }
@@ -92,11 +106,6 @@ namespace glabels
                 scroll->setWidget( formWidget );
                 scroll->setWidgetResizable( true );
                 scroll->setFrameShape( QFrame::NoFrame );
-
-                mErrorLabel = new QLabel();
-                mErrorLabel->setWordWrap( true );
-                mErrorLabel->setStyleSheet( "color: #c62828;" );
-                mErrorLabel->setVisible( false );
 
                 auto* buttons = new QDialogButtonBox( QDialogButtonBox::Save | QDialogButtonBox::Cancel );
                 buttons->button( QDialogButtonBox::Save )->setText( "Kaydet" );

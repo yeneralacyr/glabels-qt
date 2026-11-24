@@ -27,6 +27,8 @@
 #include "model/ModelObject.hpp"
 #include "model/Region.hpp"
 
+#include "merge/Record.hpp"
+
 #include <QPainter>
 #include <QScrollArea>
 #include <QWidget>
@@ -78,6 +80,9 @@ namespace glabels
                 /////////////////////////////////////
         public:
                 void setModel( model::Model* model, UndoRedoModel* undoRedoModel );
+
+                /// Show this record's data instead of ${...} codes (display only; printing is unaffected)
+                void setPreviewRecord( const merge::Record& record, bool enabled );
 
 
                 /////////////////////////////////////
@@ -180,6 +185,8 @@ namespace glabels
                 QScrollArea*         mScrollArea;
 
                 model::Model*        mModel;
+                merge::Record        mPreviewRecord;
+                bool                 mPreviewEnabled{ false };
                 UndoRedoModel*       mUndoRedoModel;
 
                 double               mZoom;

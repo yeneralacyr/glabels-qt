@@ -23,6 +23,8 @@
 
 #include "PrinterMonitor.hpp"
 
+#include "MemberPickerDialog.hpp"
+#include "merge/MemberDb.hpp"
 #include "model/Settings.hpp"
 
 #include <QDebug>
@@ -54,6 +56,129 @@ namespace glabels
                 setDestination( model::Settings::recentPrinter() );
 
                 preview->setRenderer( &mRenderer );
+
+                // Notice for member labels with nobody selected (members start unselected on purpose)
+                mMemberNotice = new QFrame();
+                mMemberNotice->setFrameShape( QFrame::StyledPanel );
+                mMemberNoticeLabel = new QLabel();
+                mMemberNoticeLabel->setWordWrap( true );
+                mChooseMembersButton = new QPushButton( "Üyeleri Seç…" );
+                mSelectAllMembersButton = new QPushButton();
+                mEditLabelButton = new QPushButton( "Etiketi Tasarla" );
+                auto* buttonRow = new QHBoxLayout();
+                buttonRow->addWidget( mEditLabelButton );
+                buttonRow->addWidget( mChooseMembersButton );
+                buttonRow->addWidget( mSelectAllMembersButton );
+                buttonRow->addStretch( 1 );
+                auto* noticeLayout = new QVBoxLayout( mMemberNotice );
+                noticeLayout->addWidget( mMemberNoticeLabel );
+                noticeLayout->addLayout( buttonRow );
+                mMemberNotice->setVisible( false );
+                verticalLayout_2->insertWidget( verticalLayout_2->indexOf( titleLabel ) + 1, mMemberNotice );
+
+                connect( mChooseMembersButton, &QPushButton::clicked, this, [this] {
+                        if ( mModel && mModel->merge()->id() == merge::MemberDb::id() )
+                        {
+                                MemberPickerDialog dialog( mModel->merge(), this );
+                                dialog.exec();
+                        }
+                } );
+                connect( mEditLabelButton, &QPushButton::clicked, this, &PrintView::editLabelRequested );
+                connect( mSelectAllMembersButton, &QPushButton::clicked, this, [this] {
+                        if ( mModel )
+                        {
+                                mModel->merge()->selectAll();
+                        }
+                } );
+        }
+
+
+        ///
+        /// Show / hide the "no members selected" notice
+        ///
+        void PrintView::setNoticeStyle( bool warning )
+        {
+                mMemberNotice->setStyleSheet( warning
+                        ? "QFrame { background-color: #fff3e0; border: 1px solid #ffb74d; border-radius: 6px; }"
+                          "QLabel { border: none; background: transparent; color: #4e2600; }"
+                        : "QFrame { background-color: #e8f1fd; border: 1px solid #90b8ec; border-radius: 6px; }"
+                          "QLabel { border: none; background: transparent; color: #0d2b52; }" );
+        }
+
+
+        void PrintView::updateMemberNotice()
+        {
+                // An empty design prints blank labels: say so first
+                if ( mModel && mModel->objectList().isEmpty() )
+                {
+                        mMemberNoticeLabel->setText( "<b>Etiket tasarımı boş.</b><br>Etikette henüz yazı yok, bu yüzden "
+                                                     "önizleme ve baskı boş çıkar. Düzenle sayfasında soldaki "
+                                                     "<b>Üye Alanları</b> listesinden alan ekleyin." );
+                        setNoticeStyle( true );
+                        mEditLabelButton->setVisible( true );
+                        mChooseMembersButton->setVisible( false );
+                        mSelectAllMembersButton->setVisible( false );
+                        mMemberNotice->setVisible( true );
+                        return;
+                }
+                mEditLabelButton->setVisible( false );
+                mChooseMembersButton->setVisible( true );
+
+                bool isMembers = mModel && mModel->merge()->id() == merge::MemberDb::id();
+                mMemberNotice->setVisible( isMembers );
+                if ( !isMembers )
+                {
+                        return;
+                }
+                int nRecords = int( mModel->merge()->recordList().size() );
+                int nSelected = mModel->merge()->nSelectedRecords();
+
+                if ( nSelected > 0 )
+                {
+                        // Who will be printed, always visible, changeable right here
+                        QStringList names;
+                        for ( const auto& record : mModel->merge()->recordList() )
+                        {
+                                if ( !record.isSelected() )
+                                {
+                                        continue;
+                                }
+                                if ( names.size() == 4 )
+                                {
+                                        names << QString( "ve %1 üye daha" ).arg( nSelected - 4 );
+                                        break;
+                                }
+                                QString name = record.value( "FIRMA" ).trimmed();
+                                if ( name.isEmpty() )
+                                {
+                                        name = ( record.value( "AD" ) + " " + record.value( "SOYAD" ) ).trimmed();
+                                }
+                                names << name.toHtmlEscaped();
+                        }
+                        setNoticeStyle( false );
+                        mMemberNoticeLabel->setText( QString( "<b>%1 üye basılacak:</b> %2" )
+                                                     .arg( nSelected ).arg( names.join( ", " ) ) );
+                        mChooseMembersButton->setText( "Üyeleri Değiştir…" );
+                        mSelectAllMembersButton->setVisible( false );
+                        return;
+                }
+
+                setNoticeStyle( true );
+                mChooseMembersButton->setText( "Üyeleri Seç…" );
+                mChooseMembersButton->setVisible( nRecords > 0 );
+                if ( nRecords == 0 )
+                {
+                        mMemberNoticeLabel->setText( "<b>Basılacak üye yok.</b><br>Üye veritabanında aktif üye bulunmuyor. "
+                                                     "Önce Üyeler sayfasından üye ekleyin." );
+                        mSelectAllMembersButton->setVisible( false );
+                }
+                else
+                {
+                        mMemberNoticeLabel->setText( "<b>Basılacak üye seçilmedi.</b><br>Kimlere basılacağını buradan "
+                                                     "seçebilir ya da tüm aktif üyeleri seçebilirsiniz." );
+                        mSelectAllMembersButton->setText( QString( "Tüm aktif üyeleri seç (%1)" ).arg( nRecords ) );
+                        mSelectAllMembersButton->setVisible( true );
+                }
         }
 
 
@@ -95,6 +220,7 @@ namespace glabels
                 mergeBox->setVisible( !mModel->merge()->keys().empty() );
                 mergeOnlyOptions->setVisible( !mModel->merge()->keys().empty() );
 
+                updateMemberNotice();
                 onFormChanged();
         }
 

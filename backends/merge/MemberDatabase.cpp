@@ -138,6 +138,12 @@ namespace glabels::merge
         }
 
 
+        int MemberDatabase::supportedSchemaVersion()
+        {
+                return SCHEMA_VERSION;
+        }
+
+
         QString MemberDatabase::idKey()
         {
                 return QStringLiteral( "UYE_ID" );
@@ -293,7 +299,9 @@ namespace glabels::merge
                 }
 
                 QSqlQuery q( db );
-                if ( !q.exec( QStringLiteral( "PRAGMA foreign_keys = ON" ) ) )
+                // Wait instead of failing immediately if another program instance is writing
+                if ( !q.exec( QStringLiteral( "PRAGMA busy_timeout = 5000" ) ) ||
+                     !q.exec( QStringLiteral( "PRAGMA foreign_keys = ON" ) ) )
                 {
                         db.close();
                         return fail( QStringLiteral( "Veritabanı ayarı yapılamadı: %1" ).arg( sqlErrorText( q.lastError() ) ), error );
@@ -411,6 +419,251 @@ namespace glabels::merge
                 {
                         return fail( QStringLiteral( "Yedek alınamadı: %1" ).arg( sqlErrorText( q.lastError() ) ), error );
                 }
+                mUnbackedChanges = false;
+                return true;
+        }
+
+
+        void MemberDatabase::markChanged()
+        {
+                mUnbackedChanges = true;
+                emit changed();
+        }
+
+
+        bool MemberDatabase::hasUnbackedChanges() const
+        {
+                return mUnbackedChanges;
+        }
+
+
+        void MemberDatabase::closeConnection()
+        {
+                if ( QSqlDatabase::contains( mConnectionName ) )
+                {
+                        {
+                                QSqlDatabase db = QSqlDatabase::database( mConnectionName, false );
+                                db.close();
+                        }
+                        QSqlDatabase::removeDatabase( mConnectionName );
+                }
+                mOpen = false;
+        }
+
+
+        bool MemberDatabase::checkIntegrity( QString* error )
+        {
+                if ( !ensureOpen( error ) )
+                {
+                        return false;
+                }
+                QSqlQuery q( QSqlDatabase::database( mConnectionName, false ) );
+                if ( !q.exec( QStringLiteral( "PRAGMA quick_check" ) ) )
+                {
+                        return fail( QStringLiteral( "Veritabanı kontrol edilemedi: %1" ).arg( sqlErrorText( q.lastError() ) ), error );
+                }
+                QStringList problems;
+                while ( q.next() )
+                {
+                        QString line = q.value( 0 ).toString();
+                        if ( line != QStringLiteral( "ok" ) )
+                        {
+                                problems << line;
+                        }
+                }
+                if ( !problems.isEmpty() )
+                {
+                        return fail( QStringLiteral( "Veritabanında bozulma bulundu: %1" ).arg( problems.mid( 0, 3 ).join( "; " ) ), error );
+                }
+                return true;
+        }
+
+
+        int MemberDatabase::memberCount( QString* error )
+        {
+                if ( !ensureOpen( error ) )
+                {
+                        return -1;
+                }
+                QSqlQuery q( QSqlDatabase::database( mConnectionName, false ) );
+                if ( !q.exec( QStringLiteral( "SELECT COUNT(*) FROM members" ) ) || !q.next() )
+                {
+                        fail( QStringLiteral( "Üye sayısı okunamadı: %1" ).arg( sqlErrorText( q.lastError() ) ), error );
+                        return -1;
+                }
+                return q.value( 0 ).toInt();
+        }
+
+
+        bool MemberDatabase::inspectBackup( const QString& path, BackupInfo* info, QString* error )
+        {
+                auto failStatic = [&]( const QString& msg ) {
+                        if ( error )
+                        {
+                                *error = msg;
+                        }
+                        return false;
+                };
+
+                QFileInfo fi( path );
+                if ( !fi.isFile() )
+                {
+                        return failStatic( QStringLiteral( "Dosya bulunamadı: %1" ).arg( path ) );
+                }
+                if ( fi.size() == 0 )
+                {
+                        return failStatic( QStringLiteral( "Dosya boş; geçerli bir yedek değil." ) );
+                }
+
+                const QString name = QStringLiteral( "glabels-uyeler-inspect" );
+                bool ok = false;
+                QString msg;
+                BackupInfo result;
+                result.fileTime = fi.lastModified();
+                {
+                        QSqlDatabase db = QSqlDatabase::addDatabase( QStringLiteral( "QSQLITE" ), name );
+                        db.setDatabaseName( fi.absoluteFilePath() );
+                        db.setConnectOptions( QStringLiteral( "QSQLITE_OPEN_READONLY" ) );
+                        if ( !db.open() )
+                        {
+                                msg = QStringLiteral( "Yedek açılamadı: %1" ).arg( sqlErrorText( db.lastError() ) );
+                        }
+                        else
+                        {
+                                QSqlQuery q( db );
+                                if ( !q.exec( QStringLiteral( "PRAGMA quick_check" ) ) || !q.next() )
+                                {
+                                        msg = QStringLiteral( "Bu dosya bir üye veritabanı yedeği değil (%1)." )
+                                              .arg( sqlErrorText( q.lastError() ) );
+                                }
+                                else if ( q.value( 0 ).toString() != QStringLiteral( "ok" ) )
+                                {
+                                        msg = QStringLiteral( "Yedek dosyası bozuk: %1" ).arg( q.value( 0 ).toString() );
+                                }
+                                else
+                                {
+                                        q.finish();
+                                        if ( !q.exec( QStringLiteral( "PRAGMA user_version" ) ) || !q.next() )
+                                        {
+                                                msg = QStringLiteral( "Yedeğin sürümü okunamadı." );
+                                        }
+                                        else
+                                        {
+                                                result.schemaVersion = q.value( 0 ).toInt();
+                                                if ( info )
+                                                {
+                                                        info->schemaVersion = result.schemaVersion;   // reported even on failure
+                                                }
+                                                q.finish();
+                                                if ( result.schemaVersion < 1 )
+                                                {
+                                                        msg = QStringLiteral( "Bu dosya bir üye veritabanı yedeği değil." );
+                                                }
+                                                else if ( result.schemaVersion > SCHEMA_VERSION )
+                                                {
+                                                        msg = QStringLiteral( "Bu yedek programın daha yeni bir sürümüyle alınmış (sürüm %1). "
+                                                                              "Önce programı güncelleyin." ).arg( result.schemaVersion );
+                                                }
+                                                else if ( !q.exec( QStringLiteral( "SELECT COUNT(*), COALESCE(SUM(active), 0) FROM members" ) ) || !q.next() )
+                                                {
+                                                        msg = QStringLiteral( "Bu dosya bir üye veritabanı yedeği değil (üye tablosu yok)." );
+                                                }
+                                                else
+                                                {
+                                                        result.totalMembers = q.value( 0 ).toInt();
+                                                        result.activeMembers = q.value( 1 ).toInt();
+                                                        ok = true;
+                                                }
+                                        }
+                                }
+                        }
+                        db.close();
+                }
+                QSqlDatabase::removeDatabase( name );
+
+                if ( !ok )
+                {
+                        return failStatic( msg );
+                }
+                if ( info )
+                {
+                        *info = result;
+                }
+                return true;
+        }
+
+
+        bool MemberDatabase::restoreFrom( const QString& backupPath, const QString& preservePath, QString* error )
+        {
+                QString src = QFileInfo( backupPath ).absoluteFilePath();
+                QString live = QFileInfo( mFilePath ).absoluteFilePath();
+                if ( src == live )
+                {
+                        return fail( QStringLiteral( "Seçilen dosya kullanılan veritabanının kendisi." ), error );
+                }
+
+                QString inspectError;
+                if ( !inspectBackup( src, nullptr, &inspectError ) )
+                {
+                        return fail( inspectError, error );
+                }
+
+                // Stage the backup next to the live file first (same disk -> rename is atomic)
+                QString staged = live + QStringLiteral( ".geri-yukleme" );
+                QFile::remove( staged );
+                if ( !QFile::copy( src, staged ) )
+                {
+                        return fail( QStringLiteral( "Yedek kopyalanamadı (disk dolu veya erişim izni yok olabilir)." ), error );
+                }
+
+                closeConnection();
+
+                // Preserve the current file as-is (works even if it is corrupt)
+                if ( QFile::exists( live ) )
+                {
+                        QDir().mkpath( QFileInfo( preservePath ).absolutePath() );
+                        QFile::remove( preservePath );
+                        if ( !QFile::copy( live, preservePath ) )
+                        {
+                                QFile::remove( staged );
+                                QString reopenError;
+                                ensureOpen( &reopenError );
+                                return fail( QStringLiteral( "Mevcut veritabanının güvenlik kopyası alınamadı: %1\n"
+                                                             "Geri yükleme yapılmadı." ).arg( preservePath ), error );
+                        }
+                }
+
+                // Swap files; keep the old one until the new one is in place
+                QString old = live + QStringLiteral( ".eski" );
+                QFile::remove( old );
+                if ( QFile::exists( live ) && !QFile::rename( live, old ) )
+                {
+                        QFile::remove( staged );
+                        QString reopenError;
+                        ensureOpen( &reopenError );
+                        return fail( QStringLiteral( "Veritabanı dosyası değiştirilemedi (başka bir program kullanıyor olabilir). "
+                                                     "Geri yükleme yapılmadı." ), error );
+                }
+                if ( !QFile::rename( staged, live ) )
+                {
+                        QFile::rename( old, live );
+                        QString reopenError;
+                        ensureOpen( &reopenError );
+                        return fail( QStringLiteral( "Yedek yerine konamadı. Önceki veritabanı korunuyor." ), error );
+                }
+                // A leftover journal from the old file must never be applied to the restored one
+                QFile::remove( live + QStringLiteral( "-journal" ) );
+                QFile::remove( live + QStringLiteral( "-wal" ) );
+                QFile::remove( live + QStringLiteral( "-shm" ) );
+                QFile::remove( old );
+
+                if ( !ensureOpen( error ) )
+                {
+                        return false;
+                }
+                // The restored data is itself a backup; nothing new to back up yet
+                mUnbackedChanges = false;
+                emit changed();
                 return true;
         }
 
@@ -480,7 +733,7 @@ namespace glabels::merge
                                      .arg( sqlErrorText( q.lastError() ) ), error );
                 }
 
-                emit changed();
+                markChanged();
                 return true;
         }
 
@@ -504,7 +757,7 @@ namespace glabels::merge
                         return fail( QStringLiteral( "Ek alan bulunamadı: %1" ).arg( key ), error );
                 }
 
-                emit changed();
+                markChanged();
                 return true;
         }
 
@@ -719,7 +972,7 @@ namespace glabels::merge
                 }
 
                 member.id = id;
-                emit changed();
+                markChanged();
                 return true;
         }
 
@@ -759,7 +1012,7 @@ namespace glabels::merge
                         return fail( QStringLiteral( "Silme tamamlanamadı: %1" ).arg( msg ), error );
                 }
 
-                emit changed();
+                markChanged();
                 return true;
         }
 
@@ -800,7 +1053,7 @@ namespace glabels::merge
                         return fail( QStringLiteral( "Durum değişikliği tamamlanamadı: %1" ).arg( msg ), error );
                 }
 
-                emit changed();
+                markChanged();
                 return true;
         }
 

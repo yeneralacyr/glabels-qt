@@ -20,6 +20,7 @@
 
 #include "ListReportDialog.hpp"
 
+#include <QApplication>
 #include <QComboBox>
 #include <QDate>
 #include <QDesktopServices>
@@ -43,8 +44,12 @@
 #include <QSettings>
 #include <QStandardPaths>
 #include <QTextDocument>
+#include <QTextOption>
 #include <QUrl>
 #include <QVBoxLayout>
+
+#include <algorithm>
+#include <cmath>
 
 
 namespace
@@ -53,7 +58,7 @@ namespace
         const QString NUMBER_KEY = QStringLiteral( "__SIRA__" );
         const char* SETTINGS_COLUMNS = "uyeler/listeSutunlari";
 
-        const QStringList DEFAULT_COLUMNS = { NUMBER_KEY, "FIRMA", "AD", "SOYAD", "TELEFON" };
+        const QStringList DEFAULT_COLUMNS = { NUMBER_KEY, "FIRMA", "AD", "SOYAD", "ADRES", "ILCE", "IL", "TELEFON" };
 
 
         QString defaultPath( const QString& baseName, const QString& ext )
@@ -83,8 +88,21 @@ namespace glabels
         {
                 setWindowTitle( "Liste Yazdır" );
 
-                mInfoLabel = new QLabel( QString( "<b>%1 üye</b> listelenecek (Üyeler sayfasında işaretli olanlar)." )
-                                         .arg( members.size() ) );
+                int nPassive = 0;
+                for ( const auto& m : members )
+                {
+                        if ( !m.active )
+                        {
+                                nPassive++;
+                        }
+                }
+                QString info = QString( "<b>%1 üye</b> listelenecek (Üyeler sayfasında seçili olanlar)." ).arg( members.size() );
+                if ( nPassive > 0 )
+                {
+                        info += QString( "<br>Bunların %1 tanesi pasif üye; listede yer alır ama etiketlere dahil edilmez." ).arg( nPassive );
+                }
+                mInfoLabel = new QLabel( info );
+                mInfoLabel->setWordWrap( true );
 
                 mTitleEdit = new QLineEdit( "Üye Listesi" );
 
@@ -169,6 +187,10 @@ namespace glabels
                 connect( mPdfButton, &QPushButton::clicked, this, &ListReportDialog::onPdfClicked );
                 connect( mExcelButton, &QPushButton::clicked, this, &ListReportDialog::onExcelClicked );
                 connect( mColumnList, &QListWidget::itemChanged, this, &ListReportDialog::updateButtons );
+                // Clicking anywhere on a column name toggles it (not only the small box)
+                connect( mColumnList, &QListWidget::itemClicked, this, []( QListWidgetItem* item ) {
+                        item->setCheckState( item->checkState() == Qt::Checked ? Qt::Unchecked : Qt::Checked );
+                } );
 
                 resize( 460, 560 );
                 updateButtons();
@@ -251,36 +273,78 @@ namespace glabels
                         .arg( QLocale( QLocale::Turkish ).toString( QDate::currentDate(), QLocale::LongFormat ) )
                         .arg( members.size() );
 
-                html += "<table width='100%' cellspacing='0' cellpadding='3' border='1' style='border-collapse: collapse; border-color: #999999;'>";
-                html += "<thead><tr>";
-                if ( numbered )
-                {
-                        html += "<th width='1%'>#</th>";
-                }
+                // Fixed column widths (from content length) so that every table chunk lines up
+                QList<int> weights;
                 for ( const auto& c : columns )
                 {
-                        html += QString( "<th>%1</th>" ).arg( c.label.toHtmlEscaped() );
+                        int longest = int( c.label.size() );
+                        for ( const auto& m : members )
+                        {
+                                for ( const auto& line : m.values.value( c.key ).split( '\n' ) )
+                                {
+                                        longest = std::max( longest, int( line.size() ) );
+                                }
+                        }
+                        weights << std::clamp( longest, 4, 40 );
                 }
-                html += "</tr></thead><tbody>";
-
-                int n = 1;
-                for ( const auto& m : members )
+                int numberWeight = numbered ? std::max( 2, int( QString::number( members.size() ).size() ) + 1 ) : 0;
+                int total = numberWeight;
+                for ( int w : weights )
                 {
-                        html += "<tr>";
-                        if ( numbered )
-                        {
-                                html += QString( "<td align='right'>%1</td>" ).arg( n );
-                        }
-                        for ( const auto& c : columns )
-                        {
-                                QString v = m.values.value( c.key ).toHtmlEscaped();
-                                v.replace( '\n', "<br>" );
-                                html += QString( "<td>%1</td>" ).arg( v );
-                        }
-                        html += "</tr>";
-                        n++;
+                        total += w;
                 }
-                html += "</tbody></table></body></html>";
+                auto percent = [total]( int w ) { return std::max( 1, int( std::lround( 100.0 * w / std::max( total, 1 ) ) ) ); };
+
+                QString header = "<thead><tr>";
+                if ( numbered )
+                {
+                        header += QString( "<th width='%1%'>#</th>" ).arg( percent( numberWeight ) );
+                }
+                for ( int i = 0; i < columns.size(); i++ )
+                {
+                        header += QString( "<th width='%1%'>%2</th>" ).arg( percent( weights[i] ) ).arg( columns[i].label.toHtmlEscaped() );
+                }
+                header += "</tr></thead>";
+
+                // Large single tables are very slow to lay out (5000 rows took ~50 s);
+                // consecutive tables of CHUNK rows look the same and lay out in linear time
+                const int CHUNK = 40;
+                const QString tableOpen = "<table width='100%' cellspacing='0' cellpadding='3' border='1' "
+                                          "style='border-collapse: collapse; border-color: #999999;'>";
+                int n = 1;
+                for ( int start = 0; start < members.size() || start == 0; start += CHUNK )
+                {
+                        html += tableOpen + header + "<tbody>";
+                        for ( int i = start; i < std::min( int( members.size() ), start + CHUNK ); i++ )
+                        {
+                                const auto& m = members[i];
+                                html += "<tr>";
+                                if ( numbered )
+                                {
+                                        html += QString( "<td align='right' width='%1%'>%2</td>" ).arg( percent( numberWeight ) ).arg( n );
+                                }
+                                for ( int ci = 0; ci < columns.size(); ci++ )
+                                {
+                                        const auto& c = columns[ci];
+                                        QString v = m.values.value( c.key ).toHtmlEscaped();
+                                        v.replace( '\n', "<br>" );
+                                        // Numbers must stay on one line ("0312 555 0008")
+                                        static const QStringList NO_WRAP = { "TELEFON", "SICIL_NO", "VERGI_NO" };
+                                        html += QString( "<td width='%1%'%2>%3</td>" )
+                                                .arg( percent( weights[ci] ) )
+                                                .arg( NO_WRAP.contains( c.key ) ? QStringLiteral( " style='white-space: nowrap;'" ) : QString() )
+                                                .arg( v );
+                                }
+                                html += "</tr>";
+                                n++;
+                        }
+                        html += "</tbody></table>";
+                        if ( members.isEmpty() )
+                        {
+                                break;
+                        }
+                }
+                html += "</body></html>";
                 return html;
         }
 
@@ -335,7 +399,15 @@ namespace glabels
                                                                                      : QPageLayout::Portrait );
                 printer->setPageMargins( QMarginsF( 12, 12, 12, 12 ), QPageLayout::Millimeter );
 
+                // Large lists take a few seconds (≈2.5 ms per member): show that work is going on
+                QApplication::setOverrideCursor( Qt::WaitCursor );
+                struct RestoreCursor { ~RestoreCursor() { QApplication::restoreOverrideCursor(); } } restoreCursor;
+
                 QTextDocument doc;
+                // Break lines between words only (no "Bahçelie / vler")
+                QTextOption option = doc.defaultTextOption();
+                option.setWrapMode( QTextOption::WordWrap );
+                doc.setDefaultTextOption( option );
                 doc.setHtml( buildHtml( mTitleEdit->text().trimmed(), mMembers, columns, numbered ) );
                 // No page size on the document: QTextDocument paginates to the printer and adds page numbers
                 doc.print( printer );

@@ -46,6 +46,7 @@ namespace glabels
 
         // Forward References
         class LabelEditor;
+        class MemberFieldsPanel;
         class MembersView;
         class MergeView;
         class ObjectEditor;
@@ -173,6 +174,10 @@ namespace glabels
 
                 void onSendMembersToLabel( const QList<qint64>& memberIds );
                 void onMemberDatabaseChanged();
+                void onMemberFieldActivated( const QString& key );
+                void onMemberPreviewChanged();
+                void onMembersSelectionEdited();
+                void onPrintSelectionChanged();
 
 
                 /////////////////////////////////////
@@ -265,6 +270,8 @@ namespace glabels
                 VariablesView*       mVariablesView;
                 PrintView*           mPrintView;
                 MembersView*         mMembersView;
+                MemberFieldsPanel*   mMemberFieldsPanel;
+                bool                 mSyncingSelection{ false };
 
                 QLabel*   zoomInfoLabel;
                 QLabel*   cursorInfoLabel;

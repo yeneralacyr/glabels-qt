@@ -1472,7 +1472,11 @@ namespace glabels::model
         bool Model::canPaste()
         {
                 const QClipboard *clipboard = QApplication::clipboard();
-                const QMimeData *mimeData = clipboard->mimeData();
+                const QMimeData *mimeData = clipboard ? clipboard->mimeData() : nullptr;
+                if ( !mimeData )
+                {
+                        return false;   // no clipboard available / empty clipboard
+                }
 
                 return  mimeData->hasFormat( MIME_TYPE ) ||
                         mimeData->hasUrls()              ||
@@ -1487,7 +1491,11 @@ namespace glabels::model
         void Model::paste( Point p )
         {
                 const QClipboard *clipboard = QApplication::clipboard();
-                const QMimeData *mimeData = clipboard->mimeData();
+                const QMimeData *mimeData = clipboard ? clipboard->mimeData() : nullptr;
+                if ( !mimeData )
+                {
+                        return;
+                }
 
                 if ( mimeData->hasFormat( MIME_TYPE ) )
                 {

@@ -24,7 +24,9 @@
 #include "File.hpp"
 #include "Help.hpp"
 #include "LabelEditor.hpp"
+#include "MemberFieldsPanel.hpp"
 #include "MemberLabel.hpp"
+#include "MemberPrintDialog.hpp"
 #include "MembersView.hpp"
 #include "MergeView.hpp"
 #include "ObjectEditor.hpp"
@@ -39,9 +41,11 @@
 
 #include "model/Db.hpp"
 #include "model/Model.hpp"
+#include "model/ModelTextObject.hpp"
 #include "model/XmlLabelParser.hpp"
 
 #include <QClipboard>
+#include <algorithm>
 #include <QDebug>
 #include <QFrame>
 #include <QMessageBox>
@@ -220,6 +224,11 @@ namespace glabels
                 connect( model::Settings::instance(), SIGNAL(changed()), this, SLOT(onSettingsChanged()) );
                 connect( QApplication::clipboard(), SIGNAL(dataChanged()), this, SLOT(clipboardChanged()) );
                 connect( mMembersView, &MembersView::printLabelsRequested, this, &MainWindow::onSendMembersToLabel );
+                connect( mMembersView, &MembersView::selectionEdited, this, &MainWindow::onMembersSelectionEdited );
+                connect( mMemberFieldsPanel, &MemberFieldsPanel::fieldActivated, this, &MainWindow::onMemberFieldActivated );
+                connect( mPrintView, &PrintView::editLabelRequested, this, [this] { mEditorButton->setChecked( true ); } );
+                connect( mMemberFieldsPanel, &MemberFieldsPanel::printRequested, this, [this] { mPrintButton->setChecked( true ); } );
+                connect( mMemberFieldsPanel, &MemberFieldsPanel::previewChanged, this, &MainWindow::onMemberPreviewChanged );
                 connect( merge::MemberDatabase::instance(), &merge::MemberDatabase::changed,
                          this, &MainWindow::onMemberDatabaseChanged );
 #if 0
@@ -252,6 +261,8 @@ namespace glabels
                 mPropertiesView->setModel( mModel.get(), mUndoRedoModel.get() );
                 mLabelEditor->setModel( mModel.get(), mUndoRedoModel.get() );
                 mObjectEditor->setModel( mModel.get(), mUndoRedoModel.get() );
+                mMemberFieldsPanel->setModel( mModel.get() );
+                onMemberPreviewChanged();
                 mMergeView->setModel( mModel.get(), mUndoRedoModel.get() );
                 mVariablesView->setModel( mModel.get(), mUndoRedoModel.get() );
                 mPrintView->setModel( mModel.get() );
@@ -268,6 +279,11 @@ namespace glabels
                 connect( mModel.get(), SIGNAL(selectionChanged()), this, SLOT(onSelectionChanged()) );
                 connect( mModel.get(), SIGNAL(changed()), this, SLOT(onLabelChanged()) );
                 connect( mUndoRedoModel.get(), SIGNAL(changed()), this, SLOT(onUndoRedoChanged()) );
+                connect( mModel.get(), &model::Model::mergeSelectionChanged, this, &MainWindow::onPrintSelectionChanged );
+                connect( mModel.get(), &model::Model::mergeChanged, this, &MainWindow::onMembersSelectionEdited );
+
+                // One selection everywhere: a label using the member database prints the members checked on the Members page
+                onMembersSelectionEdited();
         }
 
 
@@ -840,6 +856,7 @@ namespace glabels
 
                 mLabelEditor = new LabelEditor( mLabelEditorScrollArea );
                 mObjectEditor = new ObjectEditor();
+                mMemberFieldsPanel = new MemberFieldsPanel();
 
                 mLabelEditorScrollArea->setWidget( mLabelEditor );
 
@@ -850,6 +867,7 @@ namespace glabels
 
                 auto* editorHLayout = new QHBoxLayout;
                 editorHLayout->setContentsMargins( 0, 0, 0, 0 );
+                editorHLayout->addWidget( mMemberFieldsPanel );
                 editorHLayout->addLayout( editorVLayout );
                 editorHLayout->addWidget( mObjectEditor );
 
@@ -1329,6 +1347,7 @@ namespace glabels
         ///
         void MainWindow::onSendMembersToLabel( const QList<qint64>& memberIds )
         {
+                bool openedNow = !mModel;
                 if ( !mModel )
                 {
                         // No project open: use the remembered member label (created on first use)
@@ -1353,8 +1372,10 @@ namespace glabels
                         setModel( labelModel );
                 }
 
+                bool wasModified = mModel->isModified();
                 if ( mModel->merge()->id() != merge::MemberDb::id() )
                 {
+                        wasModified = true;   // switching the data source is a real change
                         merge::Merge* memberMerge = merge::MemberDb::create();
                         memberMerge->setSource( "" );
                         mModel->setMerge( memberMerge );
@@ -1370,7 +1391,13 @@ namespace glabels
                 {
                         keys << QString::number( id );
                 }
+                mSyncingSelection = true;
                 int nSelected = mModel->merge()->selectOnlyKeys( keys );
+                mSyncingSelection = false;
+                if ( !wasModified )
+                {
+                        mModel->clearModified();
+                }
 
                 if ( nSelected == 0 )
                 {
@@ -1380,15 +1407,171 @@ namespace glabels
                         return;
                 }
 
-                mPrintButton->setChecked( true );
-
                 int skipped = memberIds.size() - nSelected;
                 QString message = QString( "%1 üye etikete aktarıldı." ).arg( nSelected );
                 if ( skipped > 0 )
                 {
                         message += QString( " %1 pasif üye dahil edilmedi." ).arg( skipped );
                 }
-                statusBar()->showMessage( message, 8000 );
+                // Summary + preview, then straight to design or to printing
+                MemberPrintDialog dialog( mModel.get(), nSelected, skipped, this );
+                dialog.exec();
+                switch ( dialog.choice() )
+                {
+                case MemberPrintDialog::Choice::Design:
+                        statusBar()->showMessage( message, 8000 );
+                        // Show the first selected member's data on the design
+                        for ( qint64 id : memberIds )
+                        {
+                                mMemberFieldsPanel->setPreviewMember( id );
+                                if ( mMemberFieldsPanel->hasPreview() )
+                                {
+                                        break;
+                                }
+                        }
+                        mEditorButton->setChecked( true );
+                        break;
+                case MemberPrintDialog::Choice::Print:
+                        statusBar()->showMessage( message, 8000 );
+                        mPrintButton->setChecked( true );
+                        break;
+                case MemberPrintDialog::Choice::Cancel:
+                        if ( openedNow )
+                        {
+                                mMembersButton->setChecked( true );   // stay where the user was
+                        }
+                        break;
+                }
+        }
+
+
+        ///
+        /// Members page checks changed: apply them as the label's print selection
+        ///
+        void MainWindow::onMembersSelectionEdited()
+        {
+                if ( mSyncingSelection || !mModel || mModel->merge()->id() != merge::MemberDb::id() )
+                {
+                        return;
+                }
+                QStringList keys;
+                for ( qint64 id : mMembersView->selectedMemberIds() )
+                {
+                        keys << QString::number( id );
+                }
+                bool wasModified = mModel->isModified();   // choosing members is not an edit of the design
+                mSyncingSelection = true;
+                mModel->merge()->selectOnlyKeys( keys );
+                mSyncingSelection = false;
+                if ( !wasModified )
+                {
+                        mModel->clearModified();
+                }
+        }
+
+
+        ///
+        /// Print selection changed on the Print or Merge page: show it on the Members page
+        ///
+        void MainWindow::onPrintSelectionChanged()
+        {
+                if ( !mModel )
+                {
+                        return;
+                }
+                if ( mModel->merge()->id() != merge::MemberDb::id() || mSyncingSelection )
+                {
+                        return;
+                }
+                QSet<qint64> selected;
+                QSet<qint64> printable;
+                QString idKey = merge::MemberDatabase::idKey();
+                for ( const auto& record : mModel->merge()->recordList() )
+                {
+                        qint64 id = record.value( idKey ).toLongLong();
+                        printable.insert( id );
+                        if ( record.isSelected() )
+                        {
+                                selected.insert( id );
+                        }
+                }
+                mSyncingSelection = true;
+                mMembersView->syncFromPrintSelection( selected, printable );
+                mSyncingSelection = false;
+        }
+
+
+        ///
+        /// Member field clicked in the editor's side panel
+        ///
+        void MainWindow::onMemberFieldActivated( const QString& key )
+        {
+                if ( !mModel )
+                {
+                        return;
+                }
+
+                // A text or barcode object is selected: insert at its cursor
+                if ( mObjectEditor->insertField( key ) )
+                {
+                        return;
+                }
+
+                // Otherwise create a new text box below the existing objects
+                double w = mModel->w().pt();
+                double h = mModel->h().pt();
+                double margin = std::clamp( std::min( w, h ) * 0.06, 2.0, 9.0 );
+                // One 10 pt line; two for multi-line fields such as the address
+                bool multiLine = false;
+                for ( const auto& f : merge::MemberDatabase::standardFields() )
+                {
+                        if ( f.key == key )
+                        {
+                                multiLine = f.multiLine;
+                        }
+                }
+                double lineH = multiLine ? 30.0 : 16.0;
+                double y = margin;
+                for ( const auto* object : mModel->objectList() )
+                {
+                        y = std::max( y, object->y0().pt() + object->h().pt() + 2.0 );
+                }
+                if ( y + lineH > h - margin )
+                {
+                        y = margin;   // label is full: start again at the top
+                }
+
+                mUndoRedoModel->checkpoint( "Alan ekle" );
+                auto* text = new model::ModelTextObject( model::Distance::pt( margin ),
+                                                         model::Distance::pt( y ),
+                                                         model::Distance::pt( std::max( w - 2 * margin, 10.0 ) ),
+                                                         model::Distance::pt( lineH ),
+                                                         false,
+                                                         "${" + key + "}",
+                                                         "Arial",
+                                                         10.0,
+                                                         QFont::Normal,
+                                                         false,
+                                                         false,
+                                                         model::ColorNode( QColor( Qt::black ) ),
+                                                         Qt::AlignLeft,
+                                                         Qt::AlignTop,
+                                                         QTextOption::WordWrap,
+                                                         1.0,
+                                                         true );
+                mModel->addObject( text );
+                mModel->unselectAll();
+                mModel->selectObject( text );
+        }
+
+
+        ///
+        /// Preview member changed in the editor's side panel (display only)
+        ///
+        void MainWindow::onMemberPreviewChanged()
+        {
+                mLabelEditor->setPreviewRecord( mMemberFieldsPanel->previewRecord(),
+                                                mMemberFieldsPanel->hasPreview() );
         }
 
 

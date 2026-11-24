@@ -21,11 +21,14 @@
 #include "TestMemberDatabase.hpp"
 
 #include "merge/Factory.hpp"
+#include "merge/MemberBackup.hpp"
 #include "merge/MemberDatabase.hpp"
 #include "merge/MemberDb.hpp"
 
+#include <QSettings>
 #include <QSignalSpy>
 #include <QSqlDatabase>
+#include <QSqlError>
 #include <QSqlQuery>
 
 #include <memory>
@@ -41,6 +44,9 @@ void TestMemberDatabase::initTestCase()
         QVERIFY( mTmp.isValid() );
         // Must be set before the singleton is first used
         qputenv( "GLABELS_UYELER_DB", mTmp.filePath( "uyeler.sqlite" ).toUtf8() );
+        QCoreApplication::setOrganizationName( "glabels-unit-test" );
+        QCoreApplication::setApplicationName( "TestMemberDatabase" );
+        QSettings().clear();
         Factory::init();
 
         QString error;
@@ -249,4 +255,178 @@ void TestMemberDatabase::backup()
                 b.close();
         }
         QSqlDatabase::removeDatabase( "backup-check" );
+}
+
+
+void TestMemberDatabase::integrityAndInspect()
+{
+        auto db = MemberDatabase::instance();
+        QString error;
+        QVERIFY2( db->checkIntegrity( &error ), qPrintable( error ) );
+        QCOMPARE( db->memberCount( &error ), 3 );
+
+        // Valid backup
+        QString good = mTmp.filePath( "inspect-good.sqlite" );
+        QVERIFY( db->backupTo( good, &error ) );
+        BackupInfo info;
+        QVERIFY2( MemberDatabase::inspectBackup( good, &info, &error ), qPrintable( error ) );
+        QCOMPARE( info.totalMembers, 3 );
+        QCOMPARE( info.activeMembers, 2 );
+        QCOMPARE( info.schemaVersion, MemberDatabase::supportedSchemaVersion() );
+
+        // Missing, empty, not a database
+        QVERIFY( !MemberDatabase::inspectBackup( mTmp.filePath( "yok.sqlite" ), &info, &error ) );
+        QString empty = mTmp.filePath( "bos.sqlite" );
+        { QFile f( empty ); QVERIFY( f.open( QIODevice::WriteOnly ) ); }
+        QVERIFY( !MemberDatabase::inspectBackup( empty, &info, &error ) );
+        QString junk = mTmp.filePath( "cop.sqlite" );
+        { QFile f( junk ); QVERIFY( f.open( QIODevice::WriteOnly ) ); f.write( QByteArray( 4096, 'x' ) ); }
+        QVERIFY( !MemberDatabase::inspectBackup( junk, &info, &error ) );
+        QVERIFY( !error.isEmpty() );
+
+        // SQLite file that is not a member database, and one from a newer program version
+        auto makeDb = [&]( const QString& path, const QStringList& sql ) {
+                {
+                        QSqlDatabase d = QSqlDatabase::addDatabase( "QSQLITE", "make" );
+                        d.setDatabaseName( path );
+                        QVERIFY( d.open() );
+                        QSqlQuery q( d );
+                        for ( const auto& s : sql ) { QVERIFY2( q.exec( s ), qPrintable( q.lastError().text() ) ); }
+                        d.close();
+                }
+                QSqlDatabase::removeDatabase( "make" );
+        };
+        QString other = mTmp.filePath( "baska.sqlite" );
+        makeDb( other, { "CREATE TABLE x (a)" } );
+        QVERIFY( !MemberDatabase::inspectBackup( other, &info, &error ) );
+        QString newer = mTmp.filePath( "yeni-surum.sqlite" );
+        QFile::copy( good, newer );
+        makeDb( newer, { "PRAGMA user_version = 99" } );
+        info = BackupInfo();
+        QVERIFY( !MemberDatabase::inspectBackup( newer, &info, &error ) );
+        QCOMPARE( info.schemaVersion, 99 );
+}
+
+
+void TestMemberDatabase::restore()
+{
+        auto db = MemberDatabase::instance();
+        QString error;
+
+        QString snapshot = mTmp.filePath( "restore-snapshot.sqlite" );
+        QVERIFY( db->backupTo( snapshot, &error ) );
+        int before = db->memberCount( &error );
+
+        // Change data after the snapshot
+        Member extra;
+        extra.values["FIRMA"] = "Sonradan Eklenen";
+        QVERIFY( db->saveMember( extra, &error ) );
+        QCOMPARE( db->memberCount( &error ), before + 1 );
+        QVERIFY( db->hasUnbackedChanges() );
+
+        // Leftover journal of the old file must not survive the restore
+        QString journal = db->filePath() + "-journal";
+        { QFile f( journal ); QVERIFY( f.open( QIODevice::WriteOnly ) ); }
+
+        QSignalSpy spy( db, &MemberDatabase::changed );
+        QString preserve = mTmp.filePath( "sub/geri-yukleme-oncesi.sqlite" );
+        QVERIFY2( db->restoreFrom( snapshot, preserve, &error ), qPrintable( error ) );
+        QCOMPARE( spy.count(), 1 );
+        QVERIFY( db->isOpen() );
+        QCOMPARE( db->memberCount( &error ), before );
+        QVERIFY( !db->hasUnbackedChanges() );
+        QVERIFY( !QFile::exists( journal ) );
+        QVERIFY( !QFile::exists( db->filePath() + ".eski" ) );
+        QVERIFY( !QFile::exists( db->filePath() + ".geri-yukleme" ) );
+
+        // The pre-restore copy holds the newer data and can itself be restored (undo)
+        BackupInfo info;
+        QVERIFY2( MemberDatabase::inspectBackup( preserve, &info, &error ), qPrintable( error ) );
+        QCOMPARE( info.totalMembers, before + 1 );
+        QVERIFY2( db->restoreFrom( preserve, mTmp.filePath( "undo-preserve.sqlite" ), &error ), qPrintable( error ) );
+        QCOMPARE( db->memberCount( &error ), before + 1 );
+
+        // Writes still work after reopening
+        Member after;
+        after.values["FIRMA"] = "Geri Yükleme Sonrası";
+        QVERIFY2( db->saveMember( after, &error ), qPrintable( error ) );
+
+        // Refusals leave the live database untouched
+        int now = db->memberCount( &error );
+        QVERIFY( !db->restoreFrom( db->filePath(), mTmp.filePath( "x.sqlite" ), &error ) );
+        QVERIFY( !db->restoreFrom( mTmp.filePath( "cop.sqlite" ), mTmp.filePath( "y.sqlite" ), &error ) );
+        QVERIFY( db->isOpen() );
+        QCOMPARE( db->memberCount( &error ), now );
+}
+
+
+void TestMemberDatabase::automaticBackups()
+{
+        QString error, warning, used;
+        QString folder = mTmp.filePath( "Üye Yedekleri" );
+        MemberBackup::setFolder( folder );
+        QCOMPARE( MemberBackup::folder(), QDir::cleanPath( folder ) );
+
+        QVERIFY( MemberBackup::isAutomaticBackupName( "uyeler-otomatik-yedek-2026-11-24_10-00-00.sqlite" ) );
+        QVERIFY( !MemberBackup::isAutomaticBackupName( "uyeler-yedek-2026-11-24.sqlite" ) );
+        QVERIFY( !MemberBackup::isAutomaticBackupName( "geri-yukleme-oncesi-2026-11-24_10-00-00.sqlite" ) );
+
+        QVERIFY2( MemberBackup::runAutomatic( &used, &warning, &error ), qPrintable( error ) );
+        QVERIFY( warning.isEmpty() );
+        QVERIFY( used.startsWith( QDir::cleanPath( folder ) ) );
+        QVERIFY( MemberDatabase::inspectBackup( used, nullptr, &error ) );
+        QVERIFY( MemberBackup::lastBackupTime().isValid() );
+
+        // Pruning keeps the newest N automatic backups and never touches other files
+        QDir dir( folder );
+        for ( int i = 0; i < 35; i++ )
+        {
+                QFile f( dir.filePath( QString( "uyeler-otomatik-yedek-2020-01-01_00-00-%1.sqlite" ).arg( i, 2, 10, QChar( '0' ) ) ) );
+                QVERIFY( f.open( QIODevice::WriteOnly ) );
+        }
+        { QFile f( dir.filePath( "uyeler-yedek-2020-01-01.sqlite" ) ); QVERIFY( f.open( QIODevice::WriteOnly ) ); }
+        { QFile f( dir.filePath( "notlar.txt" ) ); QVERIFY( f.open( QIODevice::WriteOnly ) ); }
+        int removed = MemberBackup::prune( folder, MemberBackup::KEEP_AUTOMATIC );
+        QCOMPARE( removed, 36 - MemberBackup::KEEP_AUTOMATIC );
+        QVERIFY( QFile::exists( used ) );                                       // newest kept
+        QVERIFY( QFile::exists( dir.filePath( "uyeler-yedek-2020-01-01.sqlite" ) ) );
+        QVERIFY( QFile::exists( dir.filePath( "notlar.txt" ) ) );
+        QVERIFY( !QFile::exists( dir.filePath( "uyeler-otomatik-yedek-2020-01-01_00-00-00.sqlite" ) ) );
+        QCOMPARE( MemberBackup::automaticBackups().first(), used );
+
+        // Unreachable folder (a file blocks the path) -> local fallback with a warning
+        QString blocker = mTmp.filePath( "engel" );
+        { QFile f( blocker ); QVERIFY( f.open( QIODevice::WriteOnly ) ); }
+        MemberBackup::setFolder( blocker + "/alt" );
+        warning.clear();
+        QVERIFY2( MemberBackup::runAutomatic( &used, &warning, &error ), qPrintable( error ) );
+        QVERIFY( !warning.isEmpty() );
+        QVERIFY( used.startsWith( MemberBackup::fallbackFolder() ) );
+        MemberBackup::setFolder( folder );
+}
+
+
+void TestMemberDatabase::dailyAndExit()
+{
+        auto db = MemberDatabase::instance();
+        QString error, warning, used;
+        QSettings().remove( "uyeler/sonGunlukYedek" );
+
+        QVERIFY2( MemberBackup::runDailyIfDue( &used, &warning, &error ), qPrintable( error ) );
+        QVERIFY( !used.isEmpty() );
+        used.clear();
+        QVERIFY( MemberBackup::runDailyIfDue( &used, &warning, &error ) );
+        QVERIFY( used.isEmpty() );                     // only once per day
+
+        // Exit backup only when something changed since the last backup
+        QVERIFY( !db->hasUnbackedChanges() );
+        QVERIFY( MemberBackup::runOnExitIfNeeded( &used, &warning, &error ) );
+        QVERIFY( used.isEmpty() );
+        Member m;
+        m.values["FIRMA"] = "Çıkış Testi";
+        QVERIFY( db->saveMember( m, &error ) );
+        QVERIFY( db->hasUnbackedChanges() );
+        QVERIFY2( MemberBackup::runOnExitIfNeeded( &used, &warning, &error ), qPrintable( error ) );
+        QVERIFY( !used.isEmpty() );
+        QVERIFY( !db->hasUnbackedChanges() );
 }

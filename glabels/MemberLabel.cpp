@@ -54,12 +54,10 @@ namespace glabels::MemberLabel
         QString fileName()
         {
                 QSettings settings;
+                // A remembered location is kept even when the file is missing: the label is then
+                // created there again on first use (never silently somewhere else)
                 QString stored = settings.value( SETTINGS_KEY ).toString();
-                if ( !stored.isEmpty() && QFileInfo::exists( stored ) )
-                {
-                        return stored;
-                }
-                return defaultFileName();
+                return stored.isEmpty() ? defaultFileName() : stored;
         }
 
 

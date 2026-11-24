@@ -56,6 +56,10 @@ namespace glabels
                 /////////////////////////////////
                 // Slots
                 /////////////////////////////////
+        signals:
+                /// User wants to design the (empty) label on the Edit page
+                void editLabelRequested();
+
         private slots:
                 void onAvailablePrintersChanged( QStringList printers );
                 void onModelChanged();
@@ -69,6 +73,8 @@ namespace glabels
                 // Private methods
                 /////////////////////////////////
         private:
+                void updateMemberNotice();
+                void setNoticeStyle( bool warning );
                 void loadDestinations( const QStringList& printers );
                 QString defaultPdf();
                 void setDestination( const QString& printerName );
@@ -82,6 +88,12 @@ namespace glabels
                 model::PageRenderer mRenderer;
 
                 bool                mBlocked;
+
+                        QFrame*              mMemberNotice{ nullptr };
+                QLabel*              mMemberNoticeLabel{ nullptr };
+                QPushButton*         mSelectAllMembersButton{ nullptr };
+                QPushButton*         mChooseMembersButton{ nullptr };
+                QPushButton*         mEditLabelButton{ nullptr };
 
         };
 
