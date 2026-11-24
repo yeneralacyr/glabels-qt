@@ -123,6 +123,7 @@
 	<!-- flat: 48 x 48 -->
 	<file>icons/glabels-flat/48x48/actions/glabels-edit.svg</file>
 	<file>icons/glabels-flat/48x48/actions/glabels-merge.svg</file>
+	<file>icons/glabels-flat/48x48/actions/glabels-members.svg</file>
 	<file>icons/glabels-flat/48x48/actions/glabels-print.svg</file>
 	<file>icons/glabels-flat/48x48/actions/glabels-properties.svg</file>
 	<file>icons/glabels-flat/48x48/actions/glabels-variables.svg</file>
@@ -250,6 +251,7 @@
 	<!-- flat-dark: 48 x 48 -->
 	<file>icons/glabels-flat-dark/48x48/actions/glabels-edit.svg</file>
 	<file>icons/glabels-flat-dark/48x48/actions/glabels-merge.svg</file>
+	<file>icons/glabels-flat-dark/48x48/actions/glabels-members.svg</file>
 	<file>icons/glabels-flat-dark/48x48/actions/glabels-print.svg</file>
 	<file>icons/glabels-flat-dark/48x48/actions/glabels-properties.svg</file>
 	<file>icons/glabels-flat-dark/48x48/actions/glabels-variables.svg</file>
@@ -369,6 +371,7 @@
 	<!-- vector: 48 x 48 -->
 	<file>icons/glabels-vector/48x48/actions/glabels-edit.svg</file>
 	<file>icons/glabels-vector/48x48/actions/glabels-merge.svg</file>
+	<file>icons/glabels-vector/48x48/actions/glabels-members.svg</file>
 	<file>icons/glabels-vector/48x48/actions/glabels-print.svg</file>
 	<file>icons/glabels-vector/48x48/actions/glabels-properties.svg</file>
 	<file>icons/glabels-vector/48x48/actions/glabels-variables.svg</file>
@@ -488,6 +491,7 @@
 	<!-- vector-dark: 48 x 48 -->
 	<file>icons/glabels-vector-dark/48x48/actions/glabels-edit.svg</file>
 	<file>icons/glabels-vector-dark/48x48/actions/glabels-merge.svg</file>
+	<file>icons/glabels-vector-dark/48x48/actions/glabels-members.svg</file>
 	<file>icons/glabels-vector-dark/48x48/actions/glabels-print.svg</file>
 	<file>icons/glabels-vector-dark/48x48/actions/glabels-properties.svg</file>
 	<file>icons/glabels-vector-dark/48x48/actions/glabels-variables.svg</file>

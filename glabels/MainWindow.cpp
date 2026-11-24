@@ -24,6 +24,8 @@
 #include "File.hpp"
 #include "Help.hpp"
 #include "LabelEditor.hpp"
+#include "MemberLabel.hpp"
+#include "MembersView.hpp"
 #include "MergeView.hpp"
 #include "ObjectEditor.hpp"
 #include "PreferencesDialog.hpp"
@@ -32,8 +34,12 @@
 #include "StartupView.hpp"
 #include "VariablesView.hpp"
 
+#include "merge/MemberDatabase.hpp"
+#include "merge/MemberDb.hpp"
+
 #include "model/Db.hpp"
 #include "model/Model.hpp"
+#include "model/XmlLabelParser.hpp"
 
 #include <QClipboard>
 #include <QDebug>
@@ -53,6 +59,7 @@ namespace
                 MERGE_PAGE_INDEX      = 3,
                 VARIABLES_PAGE_INDEX  = 4,
                 PRINT_PAGE_INDEX      = 5,
+                MEMBERS_PAGE_INDEX    = 6,
         };
 }
 
@@ -79,6 +86,7 @@ namespace glabels
                 QWidget* mergePage = createMergePage();
                 QWidget* variablesPage = createVariablesPage();
                 QWidget* printPage = createPrintPage();
+                QWidget* membersPage = createMembersPage();
 
                 // Table of contents widget
                 mContents = new QToolBar();
@@ -107,6 +115,17 @@ namespace glabels
                                                QSizePolicy::Preferred );
                 mWelcomeAction = mContents->addWidget( mWelcomeButton );
                 group->addButton( mWelcomeButton );
+
+                // "Members" button (available with or without an open project)
+                mMembersButton = new QToolButton( this );
+                mMembersButton->setIcon( QIcon::fromTheme( "glabels-members" ) );
+                mMembersButton->setText( "Üyeler" );
+                mMembersButton->setToolButtonStyle( Qt::ToolButtonTextUnderIcon );
+                mMembersButton->setCheckable( true );
+                mMembersButton->setSizePolicy( QSizePolicy::MinimumExpanding,
+                                               QSizePolicy::Preferred );
+                mMembersAction = mContents->addWidget( mMembersButton );
+                group->addButton( mMembersButton );
 
                 // Add "Editor" page
                 mPages->addWidget( editorPage );
@@ -168,6 +187,9 @@ namespace glabels
                 mPrintAction = mContents->addWidget( mPrintButton );
                 group->addButton( mPrintButton );
 
+                // "Members" page (button added above, after "Welcome")
+                mPages->addWidget( membersPage );
+
                 // Set initial page selection
                 mWelcomeButton->setChecked( true );
                 mPages->setCurrentIndex( WELCOME_PAGE_INDEX );
@@ -187,6 +209,8 @@ namespace glabels
                 setTitle();
 
                 // Connect
+                connect( mWelcomeButton, SIGNAL(toggled(bool)), this, SLOT(changePage(bool)));
+                connect( mMembersButton, SIGNAL(toggled(bool)), this, SLOT(changePage(bool)));
                 connect( mEditorButton, SIGNAL(toggled(bool)), this, SLOT(changePage(bool)));
                 connect( mPropertiesButton, SIGNAL(toggled(bool)), this, SLOT(changePage(bool)));
                 connect( mMergeButton, SIGNAL(toggled(bool)), this, SLOT(changePage(bool)));
@@ -195,6 +219,9 @@ namespace glabels
                 connect( mLabelEditor, SIGNAL(zoomChanged()), this, SLOT(onZoomChanged()) );
                 connect( model::Settings::instance(), SIGNAL(changed()), this, SLOT(onSettingsChanged()) );
                 connect( QApplication::clipboard(), SIGNAL(dataChanged()), this, SLOT(clipboardChanged()) );
+                connect( mMembersView, &MembersView::printLabelsRequested, this, &MainWindow::onSendMembersToLabel );
+                connect( merge::MemberDatabase::instance(), &merge::MemberDatabase::changed,
+                         this, &MainWindow::onMemberDatabaseChanged );
 #if 0
                 connect( mLabelEditor, SIGNAL(pointerMoved(model::Point)),
                          this, SLOT(onPointerMoved(modelPoint)) );
@@ -333,6 +360,11 @@ namespace glabels
                 fileShowPrintPageAction->setShortcut( QKeySequence::Print );
                 fileShowPrintPageAction->setStatusTip( tr("Select project Print mode") );
                 connect( fileShowPrintPageAction, SIGNAL(triggered()), this, SLOT(fileShowPrintPage()) );
+
+                fileShowMembersPageAction = new QAction( "Ü&yeler", this );
+                fileShowMembersPageAction->setShortcut( QKeySequence( Qt::CTRL | Qt::Key_5 ) );
+                fileShowMembersPageAction->setStatusTip( "Üye listesini göster" );
+                connect( fileShowMembersPageAction, SIGNAL(triggered()), this, SLOT(fileShowMembersPage()) );
 
                 fileTemplateDesignerAction = new QAction( tr("Product Template &Designer..."), this );
                 fileTemplateDesignerAction->setStatusTip( tr("Create custom templates") );
@@ -623,6 +655,7 @@ namespace glabels
                 fileMenu->addAction( fileShowPropertiesPageAction );
                 fileMenu->addAction( fileShowMergePageAction );
                 fileMenu->addAction( fileShowVariablesPageAction );
+                fileMenu->addAction( fileShowMembersPageAction );
                 fileMenu->addAction( fileShowPrintPageAction );
                 fileMenu->addSeparator();
                 fileMenu->addAction( fileTemplateDesignerAction );
@@ -860,6 +893,17 @@ namespace glabels
 
 
         ///
+        /// Create Members Page
+        ///
+        QWidget* MainWindow::createMembersPage()
+        {
+                mMembersView = new MembersView();
+
+                return mMembersView;
+        }
+
+
+        ///
         /// Manage enabled/visibility state of actions
         ///
         void MainWindow::manageActions()
@@ -868,7 +912,6 @@ namespace glabels
                 bool hasModel      = mModel != nullptr;
 
                 // Which page is currently active?
-                bool isWelcomePage    = mWelcomeButton->isChecked();
                 bool isEditorPage     = mEditorButton->isChecked();
                 bool isPropertiesPage = mPropertiesButton->isChecked();
                 bool isMergePage      = mMergeButton->isChecked();
@@ -880,13 +923,17 @@ namespace glabels
                 bool hasMultiSelection = hasSelection && !mModel->isSelectionAtomic();
                 bool canPaste = hasModel && mModel->canPaste();
 
-                // Toggle visibility of TOC buttons based on welcome mode
-                mWelcomeAction->setVisible( isWelcomePage );
-                mEditorAction->setVisible( !isWelcomePage );
-                mPropertiesAction->setVisible( !isWelcomePage );
-                mMergeAction->setVisible( !isWelcomePage );
-                mVariablesAction->setVisible( !isWelcomePage );
-                mPrintAction->setVisible( !isWelcomePage );
+                // Toggle visibility of TOC buttons: project pages only exist once a project is open.
+                // ("Members" is always available, so it must not count as being in project mode.)
+                bool welcomeMode = !hasModel;
+                bool isMembersPage = mMembersButton->isChecked();
+                mWelcomeAction->setVisible( welcomeMode );
+                mMembersAction->setVisible( true );
+                mEditorAction->setVisible( !welcomeMode );
+                mPropertiesAction->setVisible( !welcomeMode );
+                mMergeAction->setVisible( !welcomeMode );
+                mVariablesAction->setVisible( !welcomeMode );
+                mPrintAction->setVisible( !welcomeMode );
 
                 // Recent file actions
                 QStringList recentFileList = model::Settings::recentFileList();
@@ -908,11 +955,12 @@ namespace glabels
                 fileRecentMenu->setEnabled( !recentFileList.isEmpty() );
                 fileSaveAction->setEnabled( hasModel && mModel->isModified() );
                 fileSaveAsAction->setEnabled( hasModel );
-                fileShowEditorPageAction->setEnabled( !isWelcomePage && !isEditorPage );
-                fileShowPropertiesPageAction->setEnabled( !isWelcomePage && !isPropertiesPage );
-                fileShowMergePageAction->setEnabled( !isWelcomePage && !isMergePage );
-                fileShowVariablesPageAction->setEnabled( !isWelcomePage && !isVariablesPage );
-                fileShowPrintPageAction->setEnabled( !isWelcomePage && !isPrintPage );
+                fileShowEditorPageAction->setEnabled( !welcomeMode && !isEditorPage );
+                fileShowPropertiesPageAction->setEnabled( !welcomeMode && !isPropertiesPage );
+                fileShowMergePageAction->setEnabled( !welcomeMode && !isMergePage );
+                fileShowVariablesPageAction->setEnabled( !welcomeMode && !isVariablesPage );
+                fileShowPrintPageAction->setEnabled( !welcomeMode && !isPrintPage );
+                fileShowMembersPageAction->setEnabled( !isMembersPage );
                 fileTemplateDesignerAction->setEnabled( true );
                 fileCloseAction->setEnabled( true );
                 fileExitAction->setEnabled( true );
@@ -1129,7 +1177,15 @@ namespace glabels
         {
                 if ( checked )
                 {
-                        if ( mEditorButton->isChecked() )
+                        if ( mWelcomeButton->isChecked() )
+                        {
+                                mPages->setCurrentIndex( WELCOME_PAGE_INDEX );
+                        }
+                        else if ( mMembersButton->isChecked() )
+                        {
+                                mPages->setCurrentIndex( MEMBERS_PAGE_INDEX );
+                        }
+                        else if ( mEditorButton->isChecked() )
                         {
                                 mPages->setCurrentIndex( EDITOR_PAGE_INDEX );
                         }
@@ -1256,6 +1312,101 @@ namespace glabels
         void MainWindow::fileShowPrintPage()
         {
                 mPrintButton->setChecked( true );
+        }
+
+
+        ///
+        /// File->Show Members Page
+        ///
+        void MainWindow::fileShowMembersPage()
+        {
+                mMembersButton->setChecked( true );
+        }
+
+
+        ///
+        /// Members page asked to print the selected members
+        ///
+        void MainWindow::onSendMembersToLabel( const QList<qint64>& memberIds )
+        {
+                if ( !mModel )
+                {
+                        // No project open: use the remembered member label (created on first use)
+                        QString error;
+                        QString fileName = MemberLabel::ensure( this, &error );
+                        if ( fileName.isEmpty() )
+                        {
+                                if ( !error.isEmpty() )
+                                {
+                                        QMessageBox::warning( this, "Etiket Bas", error );
+                                }
+                                return;
+                        }
+
+                        model::Model* labelModel = model::XmlLabelParser::readFile( fileName );
+                        if ( !labelModel )
+                        {
+                                QMessageBox::warning( this, "Etiket Bas",
+                                                      QString( "Etiket tasarımı açılamadı:\n%1" ).arg( fileName ) );
+                                return;
+                        }
+                        setModel( labelModel );
+                }
+
+                if ( mModel->merge()->id() != merge::MemberDb::id() )
+                {
+                        merge::Merge* memberMerge = merge::MemberDb::create();
+                        memberMerge->setSource( "" );
+                        mModel->setMerge( memberMerge );
+                }
+                else
+                {
+                        // Pick up edits made since the source was loaded
+                        mModel->merge()->reloadSource();
+                }
+
+                QStringList keys;
+                for ( qint64 id : memberIds )
+                {
+                        keys << QString::number( id );
+                }
+                int nSelected = mModel->merge()->selectOnlyKeys( keys );
+
+                if ( nSelected == 0 )
+                {
+                        QMessageBox::warning( this, "Etiket Bas",
+                                              "Seçilen üyelerin hiçbiri etikete aktarılamadı.\n\n"
+                                              "Pasif üyeler etiketlere dahil edilmez; önce \"Aktif Yap\" ile etkinleştirin." );
+                        return;
+                }
+
+                mPrintButton->setChecked( true );
+
+                int skipped = memberIds.size() - nSelected;
+                QString message = QString( "%1 üye etikete aktarıldı." ).arg( nSelected );
+                if ( skipped > 0 )
+                {
+                        message += QString( " %1 pasif üye dahil edilmedi." ).arg( skipped );
+                }
+                statusBar()->showMessage( message, 8000 );
+        }
+
+
+        ///
+        /// Keep a member-database merge in sync with edits on the Members page
+        ///
+        void MainWindow::onMemberDatabaseChanged()
+        {
+                if ( mModel && mModel->merge()->id() == merge::MemberDb::id() )
+                {
+                        // Reloading data is not an edit of the label itself
+                        bool wasModified = mModel->isModified();
+                        mModel->merge()->reloadSource();
+                        if ( !wasModified )
+                        {
+                                mModel->clearModified();
+                        }
+                }
         }
 
 

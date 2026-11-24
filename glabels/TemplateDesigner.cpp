@@ -1556,7 +1556,7 @@ namespace glabels
                 setSubTitle( tr("Click \"Save\" to save your custom product template!") );
 
                 setFinalPage( true );
-                setButtonText( QWizard::FinishButton, "Save" );
+                setButtonText( QWizard::FinishButton, tr("Save") );
 
                 QWidget* widget = new QWidget;
                 setupUi( widget );

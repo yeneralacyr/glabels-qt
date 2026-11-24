@@ -16,12 +16,17 @@ set (glabels_sources
   ColorPaletteItem.cpp
   ColorSwatch.cpp
   Cursors.cpp
+  CustomFieldsDialog.cpp
   EditVariableDialog.cpp
   FieldButton.cpp
   File.cpp
   Help.cpp
   LabelEditor.cpp
+  ListReportDialog.cpp
   MainWindow.cpp
+  MemberDialog.cpp
+  MemberLabel.cpp
+  MembersView.cpp
   MergeTableModel.cpp
   MergeView.cpp
   MiniPreviewPixmap.cpp
@@ -56,11 +61,15 @@ set (glabels_qobject_headers
   ColorHistory.hpp
   ColorPaletteDialog.hpp
   ColorPaletteItem.hpp
+  CustomFieldsDialog.hpp
   EditVariableDialog.hpp
   FieldButton.hpp
   File.hpp
   LabelEditor.hpp
+  ListReportDialog.hpp
   MainWindow.hpp
+  MemberDialog.hpp
+  MembersView.hpp
   MergeTableModel.hpp
   MergeView.hpp
   ObjectEditor.hpp
@@ -144,6 +153,7 @@ target_include_directories (glabels-qt
 target_link_libraries (glabels-qt
   Model
   Qt6::Concurrent
+  Qt6::Sql
   Qt6::Widgets
 )
 

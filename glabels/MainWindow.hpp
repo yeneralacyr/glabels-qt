@@ -46,6 +46,7 @@ namespace glabels
 
         // Forward References
         class LabelEditor;
+        class MembersView;
         class MergeView;
         class ObjectEditor;
         class PrintView;
@@ -104,6 +105,7 @@ namespace glabels
                 void fileShowMergePage();
                 void fileShowVariablesPage();
                 void fileShowPrintPage();
+                void fileShowMembersPage();
                 void fileTemplateDesigner();
                 void fileClose();
                 void fileExit();
@@ -169,6 +171,9 @@ namespace glabels
 
                 void onSettingsChanged();
 
+                void onSendMembersToLabel( const QList<qint64>& memberIds );
+                void onMemberDatabaseChanged();
+
 
                 /////////////////////////////////////
                 // Internal Private Methods
@@ -185,6 +190,7 @@ namespace glabels
                 QWidget* createMergePage();
                 QWidget* createVariablesPage();
                 QWidget* createPrintPage();
+                QWidget* createMembersPage();
 
                 void manageActions();
 
@@ -239,6 +245,7 @@ namespace glabels
                 QToolButton*         mMergeButton;
                 QToolButton*         mVariablesButton;
                 QToolButton*         mPrintButton;
+                QToolButton*         mMembersButton;
 
                 QAction*             mWelcomeAction;
                 QAction*             mEditorAction;
@@ -246,6 +253,7 @@ namespace glabels
                 QAction*             mMergeAction;
                 QAction*             mVariablesAction;
                 QAction*             mPrintAction;
+                QAction*             mMembersAction;
 
                 QStackedWidget*      mPages;
                 StartupView*         mWelcomeView;
@@ -256,6 +264,7 @@ namespace glabels
                 MergeView*           mMergeView;
                 VariablesView*       mVariablesView;
                 PrintView*           mPrintView;
+                MembersView*         mMembersView;
 
                 QLabel*   zoomInfoLabel;
                 QLabel*   cursorInfoLabel;
@@ -269,6 +278,7 @@ namespace glabels
                 QAction*  fileShowMergePageAction;
                 QAction*  fileShowVariablesPageAction;
                 QAction*  fileShowPrintPageAction;
+                QAction*  fileShowMembersPageAction;
                 QAction*  fileTemplateDesignerAction;
                 QAction*  fileCloseAction;
                 QAction*  fileExitAction;

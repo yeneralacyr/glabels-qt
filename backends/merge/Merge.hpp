@@ -80,6 +80,7 @@ namespace glabels::merge
                 void setSelected( int i, bool state = true );
                 void selectAll();
                 void unselectAll();
+                int selectOnlyKeys( const QStringList& primaryKeyValues );
 
                 int nSelectedRecords() const;
                 const QList<Record> selectedRecords() const;

@@ -132,7 +132,13 @@ namespace glabels
                         mOldFormatComboIndex = index;
 
                         QString id = merge::Factory::indexToId(index);
-                        mModel->setMerge( merge::Factory::createMerge( id ) );
+                        merge::Merge* merge = merge::Factory::createMerge( id );
+                        if ( merge::Factory::idToType( id ) == merge::Factory::FIXED )
+                        {
+                                // Built-in sources have no file to pick; load records now
+                                merge->setSource( "" );
+                        }
+                        mModel->setMerge( merge );
                 }
         }
 

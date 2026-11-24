@@ -21,6 +21,8 @@
 
 #include "Merge.hpp"
 
+#include <QSet>
+
 
 namespace glabels::merge
 {
@@ -161,6 +163,30 @@ namespace glabels::merge
         ///
         /// Return count of selected records
         ///
+        ///
+        /// Select exactly the records whose primary key value is in the list.
+        /// Emits selectionChanged() once.  Returns the number of selected records.
+        ///
+        int Merge::selectOnlyKeys( const QStringList& primaryKeyValues )
+        {
+                QSet<QString> wanted( primaryKeyValues.begin(), primaryKeyValues.end() );
+                QString pk = primaryKey();
+
+                int count = 0;
+                for ( auto& record : mRecordList )
+                {
+                        bool on = wanted.contains( record.value( pk ) );
+                        record.setSelected( on );
+                        if ( on )
+                        {
+                                count++;
+                        }
+                }
+                emit selectionChanged();
+                return count;
+        }
+
+
         int Merge::nSelectedRecords() const
         {
                 int count = 0;

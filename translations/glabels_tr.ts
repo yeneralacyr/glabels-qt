@@ -5,62 +5,62 @@
     <name>AboutDialog</name>
     <message>
         <source>About gLabels</source>
-        <translation>gLabels hakkında</translation>
+        <translation>gLabels Hakkında</translation>
     </message>
     <message>
         <source>&amp;License</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Lisans</translation>
     </message>
     <message>
         <source>&amp;Website</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Web Sitesi</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kapat</translation>
     </message>
 </context>
 <context>
     <name>Color name</name>
     <message>
         <source>Light Scarlet Red</source>
-        <translation type="unfinished"></translation>
+        <translation>Açık Kızıl</translation>
     </message>
     <message>
         <source>Light Orange</source>
-        <translation type="unfinished"></translation>
+        <translation>Açık Turuncu</translation>
     </message>
     <message>
         <source>Light Butter</source>
-        <translation type="unfinished"></translation>
+        <translation>Açık Tereyağı Sarısı</translation>
     </message>
     <message>
         <source>Light Chameleon</source>
-        <translation type="unfinished"></translation>
+        <translation>Açık Bukalemun Yeşili</translation>
     </message>
     <message>
         <source>Light Sky Blue</source>
-        <translation type="unfinished"></translation>
+        <translation>Açık Gök Mavisi</translation>
     </message>
     <message>
         <source>Light Plum</source>
-        <translation type="unfinished"></translation>
+        <translation>Açık Erik Moru</translation>
     </message>
     <message>
         <source>Light Chocolate</source>
-        <translation type="unfinished"></translation>
+        <translation>Açık Çikolata</translation>
     </message>
     <message>
         <source>Light Aluminum 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Açık Alüminyum 1</translation>
     </message>
     <message>
         <source>Light Aluminum 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Açık Alüminyum 2</translation>
     </message>
     <message>
         <source>Scarlet Red</source>
-        <translation type="unfinished"></translation>
+        <translation>Kızıl</translation>
     </message>
     <message>
         <source>Orange</source>
@@ -68,67 +68,67 @@
     </message>
     <message>
         <source>Butter</source>
-        <translation type="unfinished"></translation>
+        <translation>Tereyağı Sarısı</translation>
     </message>
     <message>
         <source>Chameleon</source>
-        <translation type="unfinished"></translation>
+        <translation>Bukalemun Yeşili</translation>
     </message>
     <message>
         <source>Sky Blue</source>
-        <translation type="unfinished"></translation>
+        <translation>Gök Mavisi</translation>
     </message>
     <message>
         <source>Plum</source>
-        <translation type="unfinished"></translation>
+        <translation>Erik Moru</translation>
     </message>
     <message>
         <source>Chocolate</source>
-        <translation type="unfinished"></translation>
+        <translation>Çikolata</translation>
     </message>
     <message>
         <source>Aluminum 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Alüminyum 1</translation>
     </message>
     <message>
         <source>Aluminum 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Alüminyum 2</translation>
     </message>
     <message>
         <source>Dark Scarlet Red</source>
-        <translation type="unfinished"></translation>
+        <translation>Koyu Kızıl</translation>
     </message>
     <message>
         <source>Dark Orange</source>
-        <translation type="unfinished"></translation>
+        <translation>Koyu Turuncu</translation>
     </message>
     <message>
         <source>Dark Butter</source>
-        <translation type="unfinished"></translation>
+        <translation>Koyu Tereyağı Sarısı</translation>
     </message>
     <message>
         <source>Dark Chameleon</source>
-        <translation type="unfinished"></translation>
+        <translation>Koyu Bukalemun Yeşili</translation>
     </message>
     <message>
         <source>Dark Sky Blue</source>
-        <translation type="unfinished"></translation>
+        <translation>Koyu Gök Mavisi</translation>
     </message>
     <message>
         <source>Dark Plum</source>
-        <translation type="unfinished"></translation>
+        <translation>Koyu Erik Moru</translation>
     </message>
     <message>
         <source>Dark Chocolate</source>
-        <translation type="unfinished"></translation>
+        <translation>Koyu Çikolata</translation>
     </message>
     <message>
         <source>Dark Aluminum 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Koyu Alüminyum 1</translation>
     </message>
     <message>
         <source>Dark Aluminum 2</source>
-        <translation type="unfinished"></translation>
+        <translation>Koyu Alüminyum 2</translation>
     </message>
     <message>
         <source>Black</source>
@@ -136,31 +136,31 @@
     </message>
     <message>
         <source>Very Dark Gray</source>
-        <translation type="unfinished"></translation>
+        <translation>Çok Koyu Gri</translation>
     </message>
     <message>
         <source>Darker Gray</source>
-        <translation type="unfinished"></translation>
+        <translation>Daha Koyu Gri</translation>
     </message>
     <message>
         <source>Dark Gray</source>
-        <translation type="unfinished"></translation>
+        <translation>Koyu Gri</translation>
     </message>
     <message>
         <source>Medium Gray</source>
-        <translation type="unfinished"></translation>
+        <translation>Orta Gri</translation>
     </message>
     <message>
         <source>Light Gray</source>
-        <translation type="unfinished"></translation>
+        <translation>Açık Gri</translation>
     </message>
     <message>
         <source>Lighter Gray</source>
-        <translation type="unfinished"></translation>
+        <translation>Daha Açık Gri</translation>
     </message>
     <message>
         <source>Very Light Gray</source>
-        <translation type="unfinished"></translation>
+        <translation>Çok Açık Gri</translation>
     </message>
     <message>
         <source>White</source>
@@ -171,70 +171,70 @@
     <name>EditVariableDialog</name>
     <message>
         <source>Dialog</source>
-        <translation type="unfinished"></translation>
+        <translation>İletişim Kutusu</translation>
     </message>
     <message>
         <source>Name:</source>
-        <translation type="unfinished"></translation>
+        <translation>Ad:</translation>
     </message>
     <message>
         <source>Step size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Adım boyutu:</translation>
     </message>
     <message>
         <source>Increment</source>
-        <translation type="unfinished"></translation>
+        <translation>Artış</translation>
     </message>
     <message>
         <source>Variable</source>
-        <translation type="unfinished"></translation>
+        <translation>Değişken</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tür:</translation>
     </message>
     <message>
         <source>Value:</source>
-        <translation type="unfinished"></translation>
+        <translation>Değer:</translation>
     </message>
 </context>
 <context>
     <name>Factory</name>
     <message>
         <source>None</source>
-        <translation type="unfinished"></translation>
+        <translation>Yok</translation>
     </message>
     <message>
         <source>Text: Comma Separated Values (CSV)</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin: Virgülle Ayrılmış Değerler (CSV)</translation>
     </message>
     <message>
         <source>Text: Comma Separated Values (CSV), keys on line 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin: Virgülle Ayrılmış Değerler (CSV), anahtarlar 1. satırda</translation>
     </message>
     <message>
         <source>Text: Tab Separated Values (TSV)</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin: Sekmeyle Ayrılmış Değerler (TSV)</translation>
     </message>
     <message>
         <source>Text: Tab Separated Values (TSV), keys on line 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin: Sekmeyle Ayrılmış Değerler (TSV), anahtarlar 1. satırda</translation>
     </message>
     <message>
         <source>Text: Colon Separated Values</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin: İki Noktayla Ayrılmış Değerler</translation>
     </message>
     <message>
         <source>Text: Colon Separated Values, keys on line 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin: İki Noktayla Ayrılmış Değerler, anahtarlar 1. satırda</translation>
     </message>
     <message>
         <source>Text: Semicolon Separated Values</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin: Noktalı Virgülle Ayrılmış Değerler</translation>
     </message>
     <message>
         <source>Text: Semicolon Separated Values, keys on line 1</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin: Noktalı Virgülle Ayrılmış Değerler, anahtarlar 1. satırda</translation>
     </message>
 </context>
 <context>
@@ -261,7 +261,7 @@
     <name>FrameContinuous</name>
     <message>
         <source>wide</source>
-        <translation type="unfinished"></translation>
+        <translation>genişlik</translation>
     </message>
 </context>
 <context>
@@ -272,6 +272,33 @@
     </message>
 </context>
 <context>
+    <name>GenericTemplate</name>
+    <message>
+        <source>%1 full-page labels</source>
+        <extracomment>%1 = page size. (e.g. A4)</extracomment>
+        <translation>%1 tam sayfa etiketler</translation>
+    </message>
+    <message>
+        <source>%1 half-page labels</source>
+        <extracomment>%1 = page size. (e.g. A4)</extracomment>
+        <translation>%1 yarım sayfa etiketler</translation>
+    </message>
+    <message>
+        <source>%1 quarter-page labels</source>
+        <extracomment>%1 = page size. (e.g. A4)</extracomment>
+        <translation>%1 çeyrek sayfa etiketler</translation>
+    </message>
+    <message>
+        <source>%1 envelope</source>
+        <extracomment>%1 = envelope size. (e.g. DL)</extracomment>
+        <translation>%1 zarf</translation>
+    </message>
+    <message>
+        <source>Generic</source>
+        <translation>Genel</translation>
+    </message>
+</context>
+<context>
     <name>MergeView</name>
     <message>
         <source>Source</source>
@@ -279,7 +306,7 @@
     </message>
     <message>
         <source>Format:</source>
-        <translation>Format:</translation>
+        <translation>Biçim:</translation>
     </message>
     <message>
         <source>Location:</source>
@@ -287,7 +314,7 @@
     </message>
     <message>
         <source>Records</source>
-        <translation type="unfinished"></translation>
+        <translation>Kayıtlar</translation>
     </message>
     <message>
         <source>Select all</source>
@@ -298,8 +325,12 @@
         <translation>Hiçbirini seçme</translation>
     </message>
     <message>
+        <source>Reload</source>
+        <translation>Yeniden yükle</translation>
+    </message>
+    <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Gözat...</translation>
     </message>
 </context>
 <context>
@@ -310,39 +341,39 @@
     </message>
     <message>
         <source>Text</source>
-        <translation>Yazı</translation>
+        <translation>Metin</translation>
     </message>
     <message>
         <source>Layout</source>
-        <translation>Plan</translation>
+        <translation>Düzen</translation>
     </message>
     <message>
         <source>Alignment:</source>
-        <translation>Hizalanma:</translation>
+        <translation>Hizalama:</translation>
     </message>
     <message>
         <source>Line spacing:</source>
-        <translation type="unfinished"></translation>
+        <translation>Satır aralığı:</translation>
     </message>
     <message>
         <source>Wrap mode:</source>
-        <translation type="unfinished"></translation>
+        <translation>Satır kaydırma:</translation>
     </message>
     <message>
         <source>Word</source>
-        <translation type="unfinished"></translation>
+        <translation>Sözcük</translation>
     </message>
     <message>
         <source>Anywhere</source>
-        <translation type="unfinished"></translation>
+        <translation>Herhangi bir yer</translation>
     </message>
     <message>
         <source>None</source>
-        <translation>Hiçbiri</translation>
+        <translation>Yok</translation>
     </message>
     <message>
         <source>Allow printing to shrink text to fit object</source>
-        <translation type="unfinished"></translation>
+        <translation>Yazdırırken metnin nesneye sığması için küçültülmesine izin ver</translation>
     </message>
     <message>
         <source>Font</source>
@@ -358,7 +389,7 @@
     </message>
     <message>
         <source>Style:</source>
-        <translation>Sitil:</translation>
+        <translation>Stil:</translation>
     </message>
     <message>
         <source>Color:</source>
@@ -366,7 +397,7 @@
     </message>
     <message>
         <source>Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Düzenleyici</translation>
     </message>
     <message>
         <source>Barcode</source>
@@ -374,15 +405,15 @@
     </message>
     <message>
         <source>Style</source>
-        <translation>Sitil</translation>
+        <translation>Stil</translation>
     </message>
     <message>
         <source>Type:</source>
-        <translation type="unfinished"></translation>
+        <translation>Tür:</translation>
     </message>
     <message>
         <source>Show text</source>
-        <translation type="unfinished"></translation>
+        <translation>Metni göster</translation>
     </message>
     <message>
         <source>Checksum</source>
@@ -402,7 +433,7 @@
     </message>
     <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Gözat...</translation>
     </message>
     <message>
         <source>Line/Fill</source>
@@ -422,11 +453,11 @@
     </message>
     <message>
         <source>Position/Size</source>
-        <translation>Pozisyon/Boyut</translation>
+        <translation>Konum/Boyut</translation>
     </message>
     <message>
         <source>Position</source>
-        <translation>Pozisyon</translation>
+        <translation>Konum</translation>
     </message>
     <message>
         <source>X:</source>
@@ -450,15 +481,15 @@
     </message>
     <message>
         <source>Original size:</source>
-        <translation type="unfinished"></translation>
+        <translation>Orijinal boyut:</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Sıfırla</translation>
     </message>
     <message>
         <source>Lock aspect ratio</source>
-        <translation type="unfinished"></translation>
+        <translation>En-boy oranını kilitle</translation>
     </message>
     <message>
         <source>Height:</source>
@@ -470,11 +501,11 @@
     </message>
     <message>
         <source>X offset:</source>
-        <translation>X Offset:</translation>
+        <translation>X kaydırma:</translation>
     </message>
     <message>
         <source>Y offset:</source>
-        <translation>Y Offset:</translation>
+        <translation>Y kaydırma:</translation>
     </message>
     <message>
         <source>Opacity:</source>
@@ -485,19 +516,15 @@
     <name>PreferencesDialog</name>
     <message>
         <source>gLabels - Preferences</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels - Tercihler</translation>
     </message>
     <message>
         <source>Locale</source>
         <translation>Yerel</translation>
     </message>
     <message>
-        <source>Select locale specific behavior.</source>
-        <translation>Yerele özel davranışı seç.</translation>
-    </message>
-    <message>
         <source>Units</source>
-        <translation>Birim</translation>
+        <translation>Birimler</translation>
     </message>
     <message>
         <source>Points</source>
@@ -505,7 +532,7 @@
     </message>
     <message>
         <source>Centimeters</source>
-        <translation type="unfinished"></translation>
+        <translation>Santimetre</translation>
     </message>
     <message>
         <source>Millimeters</source>
@@ -517,35 +544,119 @@
     </message>
     <message>
         <source>Picas</source>
-        <translation type="unfinished"></translation>
+        <translation>Pika</translation>
     </message>
     <message>
         <source>Grid</source>
-        <translation>Kılavuz çizgiler</translation>
+        <translation>Izgara</translation>
     </message>
     <message>
-        <source>Configure grid behavior.</source>
-        <translation type="unfinished"></translation>
+        <source>Appearance</source>
+        <translation>Görünüm</translation>
+    </message>
+    <message>
+        <source>Color scheme</source>
+        <translation>Renk düzeni</translation>
+    </message>
+    <message>
+        <source>Use a light appearance for user interface.</source>
+        <translation>Kullanıcı arayüzü için açık görünüm kullan.</translation>
+    </message>
+    <message>
+        <source>Light</source>
+        <translation>Açık</translation>
+    </message>
+    <message>
+        <source>Use a dark appearance for user interface.</source>
+        <translation>Kullanıcı arayüzü için koyu görünüm kullan.</translation>
+    </message>
+    <message>
+        <source>Dark</source>
+        <translation>Koyu</translation>
+    </message>
+    <message>
+        <source>Automatically adjust appearance based on system color scheme.</source>
+        <translation>Görünümü sistem renk düzenine göre otomatik ayarla.</translation>
+    </message>
+    <message>
+        <source>System</source>
+        <translation>Sistem</translation>
+    </message>
+    <message>
+        <source>Icon style</source>
+        <translation>Simge stili</translation>
+    </message>
+    <message>
+        <source>Flat</source>
+        <translation>Düz</translation>
+    </message>
+    <message>
+        <source>Vector</source>
+        <translation>Vektör</translation>
+    </message>
+    <message>
+        <source>Startup</source>
+        <translation>Başlangıç</translation>
+    </message>
+    <message>
+        <source>Location</source>
+        <translation>Konum</translation>
+    </message>
+    <message>
+        <source>Inherit current working directory from parent process.</source>
+        <translation>Üst işlemin geçerli çalışma dizinini devral.</translation>
+    </message>
+    <message>
+        <source>Parent working directory</source>
+        <translation>Üst çalışma dizini</translation>
+    </message>
+    <message>
+        <source>Startup in user&apos;s home directory.</source>
+        <translation>Kullanıcının ev dizininde başlat.</translation>
+    </message>
+    <message>
+        <source>Home</source>
+        <translation>Ev dizini</translation>
+    </message>
+    <message>
+        <source>Startup in user&apos;s docments directory.</source>
+        <translation>Kullanıcının Belgeler dizininde başlat.</translation>
+    </message>
+    <message>
+        <source>Documents</source>
+        <translation>Belgeler</translation>
+    </message>
+    <message>
+        <source>User defined startup directory.</source>
+        <translation>Kullanıcı tanımlı başlangıç dizini.</translation>
+    </message>
+    <message>
+        <source>Other:</source>
+        <translation>Diğer:</translation>
+    </message>
+    <message>
+        <source>Browse...</source>
+        <translation>Gözat...</translation>
     </message>
     <message>
         <source>Origin</source>
-        <translation type="unfinished"></translation>
+        <translation>Başlangıç noktası</translation>
     </message>
     <message>
         <source>Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Merkez</translation>
     </message>
     <message>
         <source>Spacing</source>
-        <translation type="unfinished"></translation>
+        <translation>Aralık</translation>
     </message>
     <message>
         <source>Top left corner</source>
-        <translation type="unfinished"></translation>
+        <translation>Sol üst köşe</translation>
     </message>
     <message>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Sıfırla</translation>
     </message>
 </context>
 <context>
@@ -556,31 +667,31 @@
     </message>
     <message>
         <source>print outlines</source>
-        <translation>Yazdırma sınırları</translation>
+        <translation>Dış çizgileri yazdır</translation>
     </message>
     <message>
         <source>print crop marks</source>
-        <translation>Kırpa izlerini yazdır</translation>
+        <translation>Kesim işaretlerini yazdır</translation>
     </message>
     <message>
         <source>print in reverse (i.e. a mirror image)</source>
-        <translation>Ters yazdır (yani, ayna görüntüsü)</translation>
+        <translation>Ters yazdır (ayna görüntüsü)</translation>
     </message>
     <message>
         <source>Page</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayfa</translation>
     </message>
     <message>
         <source>of</source>
-        <translation type="unfinished"></translation>
+        <translation>/</translation>
     </message>
     <message>
         <source>nn</source>
-        <translation type="unfinished"></translation>
+        <translation>nn</translation>
     </message>
     <message>
         <source>Pages</source>
-        <translation type="unfinished"></translation>
+        <translation>Sayfalar</translation>
     </message>
     <message>
         <source>Options</source>
@@ -588,43 +699,43 @@
     </message>
     <message>
         <source>Print range</source>
-        <translation type="unfinished"></translation>
+        <translation>Yazdırma aralığı</translation>
     </message>
     <message>
         <source>Positions</source>
-        <translation type="unfinished"></translation>
+        <translation>Konumlar</translation>
     </message>
     <message>
         <source>to</source>
-        <translation type="unfinished"></translation>
+        <translation>–</translation>
     </message>
     <message>
         <source>Merge control</source>
-        <translation type="unfinished"></translation>
+        <translation>Birleştirme denetimi</translation>
     </message>
     <message>
         <source>Uncollated (e.g.  1,1,1   2,2,2   3,3,3)</source>
-        <translation type="unfinished"></translation>
+        <translation>Harmanlanmamış (ör. 1,1,1   2,2,2   3,3,3)</translation>
     </message>
     <message>
         <source>Collated   (e.g.  1,2,3   1,2,3   1,2,3)</source>
-        <translation type="unfinished"></translation>
+        <translation>Harmanlanmış   (ör. 1,2,3   1,2,3   1,2,3)</translation>
     </message>
     <message>
         <source>Merge groups are contiguous</source>
-        <translation type="unfinished"></translation>
+        <translation>Birleştirme grupları ardışık olsun</translation>
     </message>
     <message>
         <source>Merge groups start on a new page</source>
-        <translation type="unfinished"></translation>
+        <translation>Birleştirme grupları yeni sayfada başlasın</translation>
     </message>
     <message>
         <source>Start groups at position:</source>
-        <translation type="unfinished"></translation>
+        <translation>Grupları şu konumdan başlat:</translation>
     </message>
     <message>
         <source>Destination</source>
-        <translation type="unfinished"></translation>
+        <translation>Hedef</translation>
     </message>
     <message>
         <source>Print</source>
@@ -632,14 +743,14 @@
     </message>
     <message>
         <source>Use system print dialog...</source>
-        <translation type="unfinished"></translation>
+        <translation>Sistem yazdırma penceresini kullan...</translation>
     </message>
 </context>
 <context>
     <name>PropertiesView</name>
     <message>
         <source>Product</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürün</translation>
     </message>
     <message>
         <source>Vendor:</source>
@@ -651,11 +762,11 @@
     </message>
     <message>
         <source>Part #:</source>
-        <translation>Parça #:</translation>
+        <translation>Parça No:</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation>Tanım:</translation>
+        <translation>Açıklama:</translation>
     </message>
     <message>
         <source>Page size:</source>
@@ -663,73 +774,73 @@
     </message>
     <message>
         <source>Label size:</source>
-        <translation>Etiket boyu:</translation>
+        <translation>Etiket boyutu:</translation>
     </message>
     <message>
         <source>Layout:</source>
-        <translation>Plan:</translation>
+        <translation>Düzen:</translation>
     </message>
     <message>
         <source>Change product</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürünü değiştir</translation>
     </message>
     <message>
         <source>Adjustable Parameters</source>
-        <translation type="unfinished"></translation>
+        <translation>Ayarlanabilir Parametreler</translation>
     </message>
     <message>
         <source>Label length:</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiket uzunluğu:</translation>
     </message>
     <message>
         <source>Orientation</source>
-        <translation type="unfinished"></translation>
+        <translation>Yönlendirme</translation>
     </message>
     <message>
         <source>Select horizontal or vertical orientation.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yatay veya dikey yönlendirmeyi seçin.</translation>
     </message>
     <message>
         <source>Horizontal orientation</source>
-        <translation type="unfinished"></translation>
+        <translation>Yatay yönlendirme</translation>
     </message>
     <message>
         <source>Vertical orientation</source>
-        <translation type="unfinished"></translation>
+        <translation>Dikey yönlendirme</translation>
     </message>
     <message>
         <source>Similar Products</source>
-        <translation>Benzer ürünler</translation>
+        <translation>Benzer Ürünler</translation>
     </message>
     <message>
         <source>Select another product for this gLabels project.</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu gLabels projesi için başka bir ürün seçin.</translation>
     </message>
 </context>
 <context>
     <name>ReportBugDialog</name>
     <message>
         <source>gLabels - Report a Bug</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels - Hata Bildir</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopayala</translation>
+        <translation>Kopyala</translation>
     </message>
     <message>
         <source>Ctrl+C</source>
-        <translation type="unfinished"></translation>
+        <translation>Ctrl+C</translation>
     </message>
     <message>
         <source>&amp;Launch Issue Tracker</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hata İzleyiciyi Aç</translation>
     </message>
 </context>
 <context>
     <name>SelectProductDialog</name>
     <message>
         <source>gLabels - Select Product</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels - Ürün Seç</translation>
     </message>
     <message>
         <source>Search all</source>
@@ -737,55 +848,55 @@
     </message>
     <message>
         <source>Search</source>
-        <translation type="unfinished"></translation>
+        <translation>Ara</translation>
     </message>
     <message>
         <source>Filter by paper size</source>
-        <translation type="unfinished"></translation>
+        <translation>Kağıt boyutuna göre filtrele</translation>
     </message>
     <message>
         <source>ISO sizes</source>
-        <translation type="unfinished"></translation>
+        <translation>ISO boyutları</translation>
     </message>
     <message>
         <source>US sizes</source>
-        <translation type="unfinished"></translation>
+        <translation>ABD boyutları</translation>
     </message>
     <message>
         <source>Other</source>
-        <translation type="unfinished"></translation>
+        <translation>Diğer</translation>
     </message>
     <message>
         <source>Filter by category</source>
-        <translation type="unfinished"></translation>
+        <translation>Kategoriye göre filtrele</translation>
     </message>
     <message>
         <source>All</source>
-        <translation type="unfinished"></translation>
+        <translation>Tümü</translation>
     </message>
     <message>
         <source>Selected</source>
-        <translation type="unfinished"></translation>
+        <translation>Seçili</translation>
     </message>
     <message>
         <source>Search entire product database.</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm ürün veritabanında ara.</translation>
     </message>
     <message>
         <source>Recent</source>
-        <translation>Son kullanılan</translation>
+        <translation>Son kullanılanlar</translation>
     </message>
     <message>
         <source>Select from recently used products.</source>
-        <translation type="unfinished"></translation>
+        <translation>Son kullanılan ürünlerden seçin.</translation>
     </message>
     <message>
         <source>&amp;Cancel</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;İptal</translation>
     </message>
     <message>
         <source>Product information</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürün bilgileri</translation>
     </message>
     <message>
         <source>Vendor:</source>
@@ -797,11 +908,11 @@
     </message>
     <message>
         <source>Part #:</source>
-        <translation>Parça #:</translation>
+        <translation>Parça No:</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation>Tanım:</translation>
+        <translation>Açıklama:</translation>
     </message>
     <message>
         <source>Page size:</source>
@@ -809,11 +920,11 @@
     </message>
     <message>
         <source>Label size:</source>
-        <translation>Etiket boyu:</translation>
+        <translation>Etiket boyutu:</translation>
     </message>
     <message>
         <source>Layout:</source>
-        <translation>Plan:</translation>
+        <translation>Düzen:</translation>
     </message>
     <message>
         <source>Select</source>
@@ -824,49 +935,49 @@
     <name>StartupView</name>
     <message>
         <source>Welcome to gLabels.  Let&apos;s get started:</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels&apos;a hoş geldiniz. Başlayalım:</translation>
     </message>
     <message>
         <source>Create a new blank gLabels project</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni boş bir gLabels projesi oluştur</translation>
     </message>
     <message>
         <source>Open a recent gLabels project</source>
-        <translation type="unfinished"></translation>
+        <translation>Son kullanılan bir gLabels projesini aç</translation>
     </message>
     <message>
         <source>Recent</source>
-        <translation type="unfinished"></translation>
+        <translation>Son kullanılanlar</translation>
     </message>
     <message>
         <source>New...</source>
-        <translation>Yeni …</translation>
+        <translation>Yeni...</translation>
     </message>
     <message>
         <source>Browse...</source>
-        <translation type="unfinished"></translation>
+        <translation>Gözat...</translation>
     </message>
     <message>
         <source>Open an existing gLabels project</source>
-        <translation type="unfinished"></translation>
+        <translation>Mevcut bir gLabels projesini aç</translation>
     </message>
 </context>
 <context>
     <name>TemplateDesignerApplyPage</name>
     <message>
         <source>You have completed the gLabels Product Template Designer.  If you wish to accept and save your product template, click &quot;Save.&quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels Ürün Şablonu Tasarımcısını tamamladınız. Ürün şablonunuzu onaylayıp kaydetmek istiyorsanız &quot;Kaydet&quot; düğmesine tıklayın.</translation>
     </message>
     <message>
         <source>Otherwise, you may click &quot;Cancel&quot; to abandon your design or &quot;Back&quot; to review or continue editing this product template.</source>
-        <translation type="unfinished"></translation>
+        <translation>Aksi halde tasarımınızdan vazgeçmek için &quot;İptal&quot; düğmesine ya da bu ürün şablonunu gözden geçirip düzenlemeye devam etmek için &quot;Geri&quot; düğmesine tıklayabilirsiniz.</translation>
     </message>
 </context>
 <context>
     <name>TemplateDesignerCdPage</name>
     <message>
         <source>6. Margin:</source>
-        <translation>6. Sınır:</translation>
+        <translation>6. Kenar boşluğu:</translation>
     </message>
     <message>
         <source>1. Outer radius:</source>
@@ -886,14 +997,14 @@
     </message>
     <message>
         <source>5. Waste:</source>
-        <translation>5. Taşma:</translation>
+        <translation>5. Taşma payı:</translation>
     </message>
 </context>
 <context>
     <name>TemplateDesignerContinuousPage</name>
     <message>
         <source>Click &quot;Cancel&quot; to quit, or click &quot;Back&quot; to begin with a different product.</source>
-        <translation type="unfinished"></translation>
+        <translation>Çıkmak için &quot;İptal&quot; düğmesine ya da farklı bir ürünle başlamak için &quot;Geri&quot; düğmesine tıklayın.</translation>
     </message>
 </context>
 <context>
@@ -908,68 +1019,68 @@
     </message>
     <message>
         <source>3. Waste:</source>
-        <translation>3. Taşma:</translation>
+        <translation>3. Taşma payı:</translation>
     </message>
     <message>
         <source>4. Margin:</source>
-        <translation>4. Sınır:</translation>
+        <translation>4. Kenar boşluğu:</translation>
     </message>
 </context>
 <context>
     <name>TemplateDesignerIntroPage</name>
     <message>
         <source>Copy/Edit Product</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürünü Kopyala/Düzenle</translation>
     </message>
     <message>
         <source>Copy and edit an existing product template</source>
-        <translation type="unfinished"></translation>
+        <translation>Mevcut bir ürün şablonunu kopyalayıp düzenle</translation>
     </message>
     <message>
         <source>New Product</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni Ürün</translation>
     </message>
     <message>
         <source>Create a new product template from scratch</source>
-        <translation type="unfinished"></translation>
+        <translation>Sıfırdan yeni bir ürün şablonu oluştur</translation>
     </message>
     <message>
         <source>This dialog will help you create a custom product template. Let&apos;s get started:</source>
-        <translation type="unfinished"></translation>
+        <translation>Bu sihirbaz özel bir ürün şablonu oluşturmanıza yardımcı olur. Başlayalım:</translation>
     </message>
 </context>
 <context>
     <name>TemplateDesignerNLayoutsPage</name>
     <message>
         <source>A layout is a set of labels or cards that can be arranged in a simple grid.  Most products only need one layout, as in the first example below.  The second example illustrates when two layouts are needed.</source>
-        <translation type="unfinished"></translation>
+        <translation>Düzen, basit bir ızgaraya yerleştirilebilen etiket veya kart grubudur. Çoğu ürün, aşağıdaki ilk örnekte olduğu gibi yalnızca tek bir düzen gerektirir. İkinci örnek, iki düzenin ne zaman gerektiğini gösterir.</translation>
     </message>
     <message>
         <source>Products needing only one layout.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yalnızca tek düzen gerektiren ürünler.</translation>
     </message>
     <message>
         <source>Products needing two layouts.</source>
-        <translation type="unfinished"></translation>
+        <translation>İki düzen gerektiren ürünler.</translation>
     </message>
     <message>
         <source>Note: if more than two layouts are required, the product template must be edited manually.</source>
-        <translation type="unfinished"></translation>
+        <translation>Not: İkiden fazla düzen gerekiyorsa ürün şablonu elle düzenlenmelidir.</translation>
     </message>
     <message>
         <source>One layout</source>
-        <translation type="unfinished"></translation>
+        <translation>Tek düzen</translation>
     </message>
     <message>
         <source>Two layouts</source>
-        <translation type="unfinished"></translation>
+        <translation>İki düzen</translation>
     </message>
 </context>
 <context>
     <name>TemplateDesignerNamePage</name>
     <message>
         <source>(e.g. &quot;Mailing Labels,&quot; &quot;Business Cards,&quot; ...)</source>
-        <translation>(ör., &quot;E-posta Etiketleri,&quot; &quot;İş Kartları,&quot; …)</translation>
+        <translation>(ör. &quot;Posta Etiketleri&quot;, &quot;Kartvizitler&quot;, ...)</translation>
     </message>
     <message>
         <source>Brand:</source>
@@ -977,30 +1088,30 @@
     </message>
     <message>
         <source>Part #:</source>
-        <translation>Parça #:</translation>
+        <translation>Parça No:</translation>
     </message>
     <message>
         <source>Description:</source>
-        <translation>Tanım:</translation>
+        <translation>Açıklama:</translation>
     </message>
     <message>
         <source>(e.g. 8163A)</source>
-        <translation>(ör., 8163A)</translation>
+        <translation>(ör. 8163A)</translation>
     </message>
     <message>
         <source>(e.g. Avery, Acme, ...)</source>
-        <translation>(ör., Avery, Acme, …)</translation>
+        <translation>(ör. Avery, Acme, ...)</translation>
     </message>
 </context>
 <context>
     <name>TemplateDesignerOneLayoutPage</name>
     <message>
         <source>Number across (nx):</source>
-        <translation>Genişlik numarası (nx):</translation>
+        <translation>Yatay adet (nx):</translation>
     </message>
     <message>
         <source>Number down (ny):</source>
-        <translation>Aşağı numarası (ny):</translation>
+        <translation>Dikey adet (ny):</translation>
     </message>
     <message>
         <source>Distance from left edge (x0):</source>
@@ -1012,22 +1123,22 @@
     </message>
     <message>
         <source>Horizontal pitch (dx):</source>
-        <translation>Yatayda aşağı yukarı hareket (dx):</translation>
+        <translation>Yatay adım (dx):</translation>
     </message>
     <message>
         <source>Vertical pitch (dy):</source>
-        <translation>Dikeyde aşağı yukarı hareket (dy):</translation>
+        <translation>Dikey adım (dy):</translation>
     </message>
     <message>
         <source>Print test sheet</source>
-        <translation>Deneme çıktısı al</translation>
+        <translation>Deneme sayfası yazdır</translation>
     </message>
 </context>
 <context>
     <name>TemplateDesignerPageSizePage</name>
     <message>
         <source>Roll width:</source>
-        <translation type="unfinished"></translation>
+        <translation>Rulo genişliği:</translation>
     </message>
     <message>
         <source>Height:</source>
@@ -1046,18 +1157,18 @@
     <name>TemplateDesignerPathPage</name>
     <message>
         <source>Click &quot;Cancel&quot; to quit, or click &quot;Back&quot; to begin with a different product.</source>
-        <translation type="unfinished"></translation>
+        <translation>Çıkmak için &quot;İptal&quot; düğmesine ya da farklı bir ürünle başlamak için &quot;Geri&quot; düğmesine tıklayın.</translation>
     </message>
 </context>
 <context>
     <name>TemplateDesignerRectPage</name>
     <message>
         <source>4. Horizontal waste:</source>
-        <translation>4. Yatay taşma:</translation>
+        <translation>4. Yatay taşma payı:</translation>
     </message>
     <message>
         <source>3. Corner radius</source>
-        <translation>3. Köşenin yarıçapı</translation>
+        <translation>3. Köşe yarıçapı</translation>
     </message>
     <message>
         <source>1. Width:</source>
@@ -1065,7 +1176,7 @@
     </message>
     <message>
         <source>5. Vertical waste:</source>
-        <translation>5. Dikey taşma:</translation>
+        <translation>5. Dikey taşma payı:</translation>
     </message>
     <message>
         <source>2. Height:</source>
@@ -1073,22 +1184,22 @@
     </message>
     <message>
         <source>6. Margin (X):</source>
-        <translation>6. Sınır (X):</translation>
+        <translation>6. Kenar boşluğu (X):</translation>
     </message>
     <message>
         <source>7. Margin (Y):</source>
-        <translation>7. Sınır (Y):</translation>
+        <translation>7. Kenar boşluğu (Y):</translation>
     </message>
     <message>
         <source>in</source>
-        <translation type="unfinished"></translation>
+        <translation>inç</translation>
     </message>
 </context>
 <context>
     <name>TemplateDesignerRoundPage</name>
     <message>
         <source>3. Margin</source>
-        <translation>3. Sınır</translation>
+        <translation>3. Kenar boşluğu</translation>
     </message>
     <message>
         <source>1. Radius:</source>
@@ -1096,14 +1207,14 @@
     </message>
     <message>
         <source>2. Waste:</source>
-        <translation>2. Taşma:</translation>
+        <translation>2. Taşma payı:</translation>
     </message>
 </context>
 <context>
     <name>TemplateDesignerShapePage</name>
     <message>
         <source>Rectangular or square (can have rounded corners)</source>
-        <translation>Dikdörtgen veya kare (köşeleri yuvarlak olabilir)</translation>
+        <translation>Dikdörtgen veya kare (yuvarlatılmış köşeli olabilir)</translation>
     </message>
     <message>
         <source>Round</source>
@@ -1111,11 +1222,11 @@
     </message>
     <message>
         <source>Elliptical</source>
-        <translation>Elips şeklinde</translation>
+        <translation>Elips</translation>
     </message>
     <message>
         <source>CD/DVD (including credit card CDs)</source>
-        <translation>CD/DVD (kredi kartı CD&apos;leri dahil)</translation>
+        <translation>CD/DVD (kredi kartı boyutundaki CD&apos;ler dahil)</translation>
     </message>
 </context>
 <context>
@@ -1126,7 +1237,7 @@
     </message>
     <message>
         <source>Number down (ny):</source>
-        <translation>Aşağı numarası (ny):</translation>
+        <translation>Dikey adet (ny):</translation>
     </message>
     <message>
         <source>Distance from top edge (y0):</source>
@@ -1134,19 +1245,19 @@
     </message>
     <message>
         <source>Number across (nx):</source>
-        <translation>Genişlik numarası (nx):</translation>
+        <translation>Yatay adet (nx):</translation>
     </message>
     <message>
         <source>Horizontal pitch (dx):</source>
-        <translation>Yatayda aşağı yukarı hareket (dx):</translation>
+        <translation>Yatay adım (dx):</translation>
     </message>
     <message>
         <source>Vertical pitch (dy):</source>
-        <translation>Dikeyde aşağı yukarı hareket (dy):</translation>
+        <translation>Dikey adım (dy):</translation>
     </message>
     <message>
         <source>Print test sheet</source>
-        <translation>Deneme çıktısı al</translation>
+        <translation>Deneme sayfası yazdır</translation>
     </message>
 </context>
 <context>
@@ -1176,46 +1287,46 @@
     <name>Variable</name>
     <message>
         <source>String</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin</translation>
     </message>
     <message>
         <source>Integer</source>
-        <translation type="unfinished"></translation>
+        <translation>Tam sayı</translation>
     </message>
     <message>
         <source>Floating Point</source>
-        <translation type="unfinished"></translation>
+        <translation>Ondalık sayı</translation>
     </message>
     <message>
         <source>Never</source>
-        <translation type="unfinished"></translation>
+        <translation>Hiçbir zaman</translation>
     </message>
     <message>
         <source>Per item</source>
-        <translation type="unfinished"></translation>
+        <translation>Her öğede</translation>
     </message>
     <message>
         <source>Per copy</source>
-        <translation type="unfinished"></translation>
+        <translation>Her kopyada</translation>
     </message>
     <message>
         <source>Per page</source>
-        <translation type="unfinished"></translation>
+        <translation>Her sayfada</translation>
     </message>
     <message>
         <source>Color</source>
-        <translation type="unfinished"></translation>
+        <translation>Renk</translation>
     </message>
 </context>
 <context>
     <name>VariablesView</name>
     <message>
         <source>Add</source>
-        <translation type="unfinished"></translation>
+        <translation>Ekle</translation>
     </message>
     <message>
         <source>Edit</source>
-        <translation type="unfinished"></translation>
+        <translation>Düzenle</translation>
     </message>
     <message>
         <source>Delete</source>
@@ -1223,26 +1334,26 @@
     </message>
     <message>
         <source>Add variable</source>
-        <translation type="unfinished"></translation>
+        <translation>Değişken ekle</translation>
     </message>
     <message>
         <source>Edit selected variable</source>
-        <translation type="unfinished"></translation>
+        <translation>Seçili değişkeni düzenle</translation>
     </message>
     <message>
         <source>Delete selected variable</source>
-        <translation type="unfinished"></translation>
+        <translation>Seçili değişkeni sil</translation>
     </message>
 </context>
 <context>
     <name>glabels::AboutDialog</name>
     <message>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>Sürüm</translation>
     </message>
     <message>
         <source>A program to create labels and business cards.</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiket ve kartvizit oluşturma programı.</translation>
     </message>
     <message>
         <source>gLabels is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.</source>
@@ -1257,35 +1368,35 @@
     <name>glabels::ColorHistory</name>
     <message>
         <source>color %1</source>
-        <translation type="unfinished"></translation>
+        <translation>renk %1</translation>
     </message>
 </context>
 <context>
     <name>glabels::ColorPaletteDialog</name>
     <message>
         <source>Standard Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Standart Renkler</translation>
     </message>
     <message>
         <source>Recent Colors</source>
-        <translation type="unfinished"></translation>
+        <translation>Son Kullanılan Renkler</translation>
     </message>
     <message>
         <source>Custom color...</source>
-        <translation>Özel renk …</translation>
+        <translation>Özel renk...</translation>
     </message>
     <message>
         <source>Custom Color</source>
-        <translation>Özel renk</translation>
+        <translation>Özel Renk</translation>
     </message>
     <message>
         <source>Custom Color %1</source>
         <extracomment>%1 = color specification in hex. String must not contain a colon (:).</extracomment>
-        <translation>Özel renk %1</translation>
+        <translation>Özel Renk %1</translation>
     </message>
     <message>
         <source>Use substitution field</source>
-        <translation type="unfinished"></translation>
+        <translation>Veri alanı kullan</translation>
     </message>
 </context>
 <context>
@@ -1299,46 +1410,50 @@
     <name>glabels::FieldButton</name>
     <message>
         <source>Merge fields</source>
-        <translation type="unfinished"></translation>
+        <translation>Birleştirme alanları</translation>
+    </message>
+    <message>
+        <source>None</source>
+        <translation>Yok</translation>
     </message>
     <message>
         <source>Variables</source>
-        <translation type="unfinished"></translation>
+        <translation>Değişkenler</translation>
     </message>
 </context>
 <context>
     <name>glabels::File</name>
     <message>
         <source>gLabels - Open Project</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels - Proje Aç</translation>
     </message>
     <message>
         <source>glabels files (*.glabels);;All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels dosyaları (*.glabels);;Tüm dosyalar (*)</translation>
     </message>
     <message>
         <source>Unable to open &quot;</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosya açılamadı: &quot;</translation>
     </message>
     <message>
         <source>&quot;.</source>
-        <translation type="unfinished"></translation>
+        <translation>&quot;.</translation>
     </message>
     <message>
         <source>gLabels - Save Project As</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels - Projeyi Farklı Kaydet</translation>
     </message>
     <message>
         <source>Save Label As</source>
-        <translation type="unfinished"></translation>
+        <translation>Etiketi Farklı Kaydet</translation>
     </message>
     <message>
         <source>%1 already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 zaten var.</translation>
     </message>
     <message>
         <source>Do you want to replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Üzerine yazmak istiyor musunuz?</translation>
     </message>
 </context>
 <context>
@@ -1357,14 +1472,14 @@
     </message>
     <message>
         <source>Drop</source>
-        <translation type="unfinished"></translation>
+        <translation>Bırak</translation>
     </message>
 </context>
 <context>
     <name>glabels::MainWindow</name>
     <message>
         <source>Welcome</source>
-        <translation>Merhaba</translation>
+        <translation>Hoş Geldiniz</translation>
     </message>
     <message>
         <source>Edit</source>
@@ -1376,11 +1491,11 @@
     </message>
     <message>
         <source>Merge</source>
-        <translation type="unfinished"></translation>
+        <translation>Birleştirme</translation>
     </message>
     <message>
         <source>Variables</source>
-        <translation type="unfinished"></translation>
+        <translation>Değişkenler</translation>
     </message>
     <message>
         <source>Print</source>
@@ -1388,19 +1503,19 @@
     </message>
     <message>
         <source>&amp;New...</source>
-        <translation>&amp;Yeni …</translation>
+        <translation>Ye&amp;ni...</translation>
     </message>
     <message>
         <source>Create a new gLabels project</source>
-        <translation type="unfinished"></translation>
+        <translation>Yeni bir gLabels projesi oluştur</translation>
     </message>
     <message>
         <source>&amp;Open...</source>
-        <translation>&amp;Aç …</translation>
+        <translation>&amp;Aç...</translation>
     </message>
     <message>
         <source>Open an existing gLabels project</source>
-        <translation type="unfinished"></translation>
+        <translation>Mevcut bir gLabels projesini aç</translation>
     </message>
     <message>
         <source>&amp;Save</source>
@@ -1408,15 +1523,15 @@
     </message>
     <message>
         <source>Save current gLabels project</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçerli gLabels projesini kaydet</translation>
     </message>
     <message>
         <source>Save &amp;As...</source>
-        <translation>&amp;Farklı Kaydet …</translation>
+        <translation>&amp;Farklı Kaydet...</translation>
     </message>
     <message>
         <source>Save current gLabels project to a different name</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçerli gLabels projesini farklı bir adla kaydet</translation>
     </message>
     <message>
         <source>&amp;Edit</source>
@@ -1424,71 +1539,71 @@
     </message>
     <message>
         <source>Select project Edit mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Proje Düzenleme modunu seç</translation>
     </message>
     <message>
         <source>P&amp;roperties</source>
-        <translation>Ö&amp;zellikler</translation>
+        <translation>&amp;Özellikler</translation>
     </message>
     <message>
         <source>Select project Properties mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Proje Özellikler modunu seç</translation>
     </message>
     <message>
         <source>&amp;Merge</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Birleştirme</translation>
     </message>
     <message>
         <source>Select project Merge mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Proje Birleştirme modunu seç</translation>
     </message>
     <message>
         <source>&amp;Variables</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Değişkenler</translation>
     </message>
     <message>
         <source>Select project Variables mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Proje Değişkenler modunu seç</translation>
     </message>
     <message>
         <source>&amp;Print</source>
-        <translation>&amp;Yazdır</translation>
+        <translation>Ya&amp;zdır</translation>
     </message>
     <message>
         <source>Select project Print mode</source>
-        <translation type="unfinished"></translation>
+        <translation>Proje Yazdırma modunu seç</translation>
     </message>
     <message>
         <source>Product Template &amp;Designer...</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürün Şablonu &amp;Tasarımcısı...</translation>
     </message>
     <message>
         <source>Create custom templates</source>
-        <translation type="unfinished"></translation>
+        <translation>Özel şablonlar oluştur</translation>
     </message>
     <message>
         <source>&amp;Close</source>
-        <translation type="unfinished"></translation>
+        <translation>Ka&amp;pat</translation>
     </message>
     <message>
         <source>Close the current window</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçerli pencereyi kapat</translation>
     </message>
     <message>
         <source>E&amp;xit</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Çıkış</translation>
     </message>
     <message>
         <source>Exit glabels</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels&apos;tan çık</translation>
     </message>
     <message>
         <source>Undo</source>
-        <translation>Geri al</translation>
+        <translation>Geri Al</translation>
     </message>
     <message>
         <source>Redo</source>
-        <translation>Tekrar yap</translation>
+        <translation>Yinele</translation>
     </message>
     <message>
         <source>Cut</source>
@@ -1500,7 +1615,7 @@
     </message>
     <message>
         <source>&amp;Copy</source>
-        <translation>&amp;Kopayala</translation>
+        <translation>&amp;Kopyala</translation>
     </message>
     <message>
         <source>Copy the selection</source>
@@ -1520,11 +1635,11 @@
     </message>
     <message>
         <source>Delete the selected objects</source>
-        <translation>Seçilen nesneleri sil</translation>
+        <translation>Seçili nesneleri sil</translation>
     </message>
     <message>
         <source>Select &amp;All</source>
-        <translation>&amp;Tümünü seç</translation>
+        <translation>&amp;Tümünü Seç</translation>
     </message>
     <message>
         <source>Select all objects</source>
@@ -1532,51 +1647,47 @@
     </message>
     <message>
         <source>Un-select All</source>
-        <translation>Hiç birini seçme</translation>
+        <translation>Seçimi Kaldır</translation>
     </message>
     <message>
         <source>Remove all selections</source>
-        <translation>Tüm seçimleri bırak</translation>
-    </message>
-    <message>
-        <source>Preferences</source>
-        <translation>Tercihler</translation>
+        <translation>Tüm seçimleri kaldır</translation>
     </message>
     <message>
         <source>Configure the application</source>
-        <translation>Uygulamayı ayarla</translation>
+        <translation>Uygulamayı yapılandır</translation>
     </message>
     <message>
         <source>Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>Düzenleyici</translation>
     </message>
     <message>
         <source>Grid</source>
-        <translation>Kılavuz çizgiler</translation>
+        <translation>Izgara</translation>
     </message>
     <message>
         <source>Change visibility of the grid in current window</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçerli pencerede ızgaranın görünürlüğünü değiştir</translation>
     </message>
     <message>
         <source>Markup</source>
-        <translation>İşaretleme</translation>
+        <translation>İşaret Çizgileri</translation>
     </message>
     <message>
         <source>Change visibility of markup lines in current window</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçerli pencerede işaret çizgilerinin görünürlüğünü değiştir</translation>
     </message>
     <message>
         <source>Zoom &amp;In</source>
-        <translation>&amp;Yakınlaş</translation>
+        <translation>&amp;Yakınlaştır</translation>
     </message>
     <message>
         <source>Increase magnification</source>
-        <translation>Büyütme oranını arttır</translation>
+        <translation>Büyütme oranını artır</translation>
     </message>
     <message>
         <source>Zoom &amp;Out</source>
-        <translation>&amp;Uzaklaş</translation>
+        <translation>&amp;Uzaklaştır</translation>
     </message>
     <message>
         <source>Decrease magnification</source>
@@ -1584,35 +1695,35 @@
     </message>
     <message>
         <source>Zoom &amp;1 to 1</source>
-        <translation>&amp;1:1 oranında yakınlaş</translation>
+        <translation>&amp;1:1 Yakınlaştır</translation>
     </message>
     <message>
         <source>Restore scale to 100%</source>
-        <translation>Ölçüyü %100&apos;e getir</translation>
+        <translation>Ölçeği %100&apos;e geri yükle</translation>
     </message>
     <message>
         <source>Zoom to &amp;Fit</source>
-        <translation>&amp;Sığacak şekilde yakınlaş</translation>
+        <translation>Pencereye &amp;Sığdır</translation>
     </message>
     <message>
         <source>Set scale to fit window</source>
-        <translation>Pencereye sığacak şekilde ölçülendir</translation>
+        <translation>Ölçeği pencereye sığacak şekilde ayarla</translation>
     </message>
     <message>
         <source>Select Mode</source>
-        <translation>Seçim modu</translation>
+        <translation>Seçim Modu</translation>
     </message>
     <message>
         <source>Select, move and modify objects</source>
-        <translation>Nesneleri seç, hareket ettir veya düzenle</translation>
+        <translation>Nesneleri seç, taşı ve düzenle</translation>
     </message>
     <message>
         <source>Text</source>
-        <translation>Yazı</translation>
+        <translation>Metin</translation>
     </message>
     <message>
         <source>Create text object</source>
-        <translation>Yazı nesnesi oluştur</translation>
+        <translation>Metin nesnesi oluştur</translation>
     </message>
     <message>
         <source>Box</source>
@@ -1636,7 +1747,7 @@
     </message>
     <message>
         <source>Create ellipse/circle object</source>
-        <translation>Elips/daire şekilnde nesne oluştur</translation>
+        <translation>Elips/daire nesnesi oluştur</translation>
     </message>
     <message>
         <source>Image</source>
@@ -1656,123 +1767,123 @@
     </message>
     <message>
         <source>Bring To Front</source>
-        <translation>Öne getir</translation>
+        <translation>En Öne Getir</translation>
     </message>
     <message>
         <source>Raise selection to top</source>
-        <translation>Nesneyi üste getir</translation>
+        <translation>Seçimi en üste getir</translation>
     </message>
     <message>
         <source>Send To Back</source>
-        <translation>Arkaya gönder</translation>
+        <translation>En Arkaya Gönder</translation>
     </message>
     <message>
         <source>Lower selection to bottom</source>
-        <translation>Nesneyi alta gönder</translation>
+        <translation>Seçimi en alta gönder</translation>
     </message>
     <message>
         <source>Rotate Left</source>
-        <translation>Sola döndür</translation>
+        <translation>Sola Döndür</translation>
     </message>
     <message>
         <source>Rotate object(s) 90 degrees counter-clockwise</source>
-        <translation>Nesneyi saatin tersi yönde 90 derece döndür</translation>
+        <translation>Nesneleri saat yönünün tersine 90 derece döndür</translation>
     </message>
     <message>
         <source>Rotate Right</source>
-        <translation>Sağa döndür</translation>
+        <translation>Sağa Döndür</translation>
     </message>
     <message>
         <source>Rotate object(s) 90 degrees clockwise</source>
-        <translation>Nesneyi saat yönünde 90 derece döndür</translation>
+        <translation>Nesneleri saat yönünde 90 derece döndür</translation>
     </message>
     <message>
         <source>Flip Horizontally</source>
-        <translation>Yatay çevir</translation>
+        <translation>Yatay Çevir</translation>
     </message>
     <message>
         <source>Flip object(s) horizontally</source>
-        <translation type="unfinished"></translation>
+        <translation>Nesneleri yatay çevir</translation>
     </message>
     <message>
         <source>Flip Vertically</source>
-        <translation>Dikey çevir</translation>
+        <translation>Dikey Çevir</translation>
     </message>
     <message>
         <source>Flip object(s) vertically</source>
-        <translation type="unfinished"></translation>
+        <translation>Nesneleri dikey çevir</translation>
     </message>
     <message>
         <source>Align Left</source>
-        <translation>Sola hizala</translation>
+        <translation>Sola Hizala</translation>
     </message>
     <message>
         <source>Align objects to left edges</source>
-        <translation>Nesnelerin sol kenarlarını hizala</translation>
+        <translation>Nesneleri sol kenarlarına göre hizala</translation>
     </message>
     <message>
         <source>Align Center</source>
-        <translation>Merkezde hizala</translation>
+        <translation>Yatay Ortaya Hizala</translation>
     </message>
     <message>
         <source>Align objects to horizontal centers</source>
-        <translation>Nesnelerin yatay merkezlerini hizala</translation>
+        <translation>Nesneleri yatay merkezlerine göre hizala</translation>
     </message>
     <message>
         <source>Align Right</source>
-        <translation>Sağa hizala</translation>
+        <translation>Sağa Hizala</translation>
     </message>
     <message>
         <source>Align objects to right edges</source>
-        <translation>Nesnelerin sağ kenarlarını hizala</translation>
+        <translation>Nesneleri sağ kenarlarına göre hizala</translation>
     </message>
     <message>
         <source>Align Top</source>
-        <translation>Üste hizala</translation>
+        <translation>Üste Hizala</translation>
     </message>
     <message>
         <source>Align objects to top edges</source>
-        <translation>Nesnelerin üst kenarlarını hizala</translation>
+        <translation>Nesneleri üst kenarlarına göre hizala</translation>
     </message>
     <message>
         <source>Align Middle</source>
-        <translation>Ortaya hizala</translation>
+        <translation>Dikey Ortaya Hizala</translation>
     </message>
     <message>
         <source>Align objects to vertical centers</source>
-        <translation>Nesneleri dikey merkezlerine hizala</translation>
+        <translation>Nesneleri dikey merkezlerine göre hizala</translation>
     </message>
     <message>
         <source>Align Bottom</source>
-        <translation>Alta hizala</translation>
+        <translation>Alta Hizala</translation>
     </message>
     <message>
         <source>Align objects to bottom edges</source>
-        <translation>Nesnelerin alt kenarlarını hizala</translation>
+        <translation>Nesneleri alt kenarlarına göre hizala</translation>
     </message>
     <message>
         <source>Center Horizontally</source>
-        <translation>Yatay ortala</translation>
+        <translation>Yatay Ortala</translation>
     </message>
     <message>
         <source>Horizontally center objects in label</source>
-        <translation>Nesneleri etiket yatay merkezinde ortala</translation>
+        <translation>Nesneleri etikette yatay olarak ortala</translation>
     </message>
     <message>
         <source>Center Vertically</source>
-        <translation>Dİkey ortala</translation>
+        <translation>Dikey Ortala</translation>
     </message>
     <message>
         <source>Vertically center objects in label</source>
-        <translation>Nesneleri etiket dikey merkezinde ortala</translation>
+        <translation>Nesneleri etikette dikey olarak ortala</translation>
     </message>
     <message>
         <source>Open gLabels manual</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels kullanım kılavuzunu aç</translation>
     </message>
     <message>
         <source>&amp;About...</source>
-        <translation>H&amp;akkında …</translation>
+        <translation>H&amp;akkında...</translation>
     </message>
     <message>
         <source>About gLabels</source>
@@ -1788,7 +1899,7 @@
     </message>
     <message>
         <source>Toolbars</source>
-        <translation type="unfinished"></translation>
+        <translation>Araç Çubukları</translation>
     </message>
     <message>
         <source>&amp;Objects</source>
@@ -1800,7 +1911,7 @@
     </message>
     <message>
         <source>&amp;Order</source>
-        <translation>&amp;Sırala</translation>
+        <translation>Sı&amp;ralama</translation>
     </message>
     <message>
         <source>&amp;Rotate/Flip</source>
@@ -1808,11 +1919,11 @@
     </message>
     <message>
         <source>&amp;Alignment</source>
-        <translation>Hiz&amp;alama</translation>
+        <translation>&amp;Hizalama</translation>
     </message>
     <message>
         <source>Center</source>
-        <translation type="unfinished"></translation>
+        <translation>Ortala</translation>
     </message>
     <message>
         <source>&amp;Help</source>
@@ -1820,23 +1931,23 @@
     </message>
     <message>
         <source>&amp;Editor</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Düzenleyici</translation>
     </message>
     <message>
         <source>(modified)</source>
-        <translation>(değiştirilmiş)</translation>
+        <translation>(değiştirildi)</translation>
     </message>
     <message>
         <source>Save changes to project &quot;%1&quot; before closing?</source>
-        <translation type="unfinished"></translation>
+        <translation>Kapatmadan önce &quot;%1&quot; projesindeki değişiklikler kaydedilsin mi?</translation>
     </message>
     <message>
         <source>Your changes will be lost if you don&apos;t save them.</source>
-        <translation>Kaydetmezseniz değişiklikleri kaybedeceksiniz.</translation>
+        <translation>Kaydetmezseniz değişiklikleriniz kaybolacaktır.</translation>
     </message>
     <message>
         <source>Save project?</source>
-        <translation type="unfinished"></translation>
+        <translation>Proje kaydedilsin mi?</translation>
     </message>
     <message>
         <source>Paste</source>
@@ -1848,92 +1959,96 @@
     </message>
     <message>
         <source>Create Text</source>
-        <translation>Yazı nesnesi oluştur</translation>
+        <translation>Metin oluştur</translation>
     </message>
     <message>
         <source>Create Box</source>
-        <translation>Kutu nesnesi oluştur</translation>
+        <translation>Kutu oluştur</translation>
     </message>
     <message>
         <source>Create Line</source>
-        <translation>Çizgi nesnesi oluştur</translation>
+        <translation>Çizgi oluştur</translation>
     </message>
     <message>
         <source>Create Ellipse</source>
-        <translation>Elips nesnesi oluştur</translation>
+        <translation>Elips oluştur</translation>
     </message>
     <message>
         <source>Create Image</source>
-        <translation>Resim nesnesi oluştur</translation>
+        <translation>Resim oluştur</translation>
     </message>
     <message>
         <source>Create Barcode</source>
-        <translation>Barkod nesnesi oluştur</translation>
+        <translation>Barkod oluştur</translation>
     </message>
     <message>
         <source>Quick Access</source>
-        <translation type="unfinished"></translation>
+        <translation>Hızlı Erişim</translation>
     </message>
     <message>
         <source>&amp;Report Bug...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Hata Bildir...</translation>
     </message>
     <message>
         <source>Report a bug to the developers</source>
-        <translation type="unfinished"></translation>
+        <translation>Geliştiricilere hata bildir</translation>
     </message>
     <message>
         <source>Change visibility of the &quot;Quick Access&quot; toolbar in current window</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçerli pencerede &quot;Hızlı Erişim&quot; araç çubuğunun görünürlüğünü değiştir</translation>
+    </message>
+    <message>
+        <source>Preferences...</source>
+        <translation>Tercihler...</translation>
     </message>
     <message>
         <source>Change visibility of the &quot;Editor&quot; toolbar in current window</source>
-        <translation type="unfinished"></translation>
+        <translation>Geçerli pencerede &quot;Düzenleyici&quot; araç çubuğunun görünürlüğünü değiştir</translation>
     </message>
     <message>
         <source>&amp;User Manual...</source>
-        <translation type="unfinished"></translation>
+        <translation>&amp;Kullanım Kılavuzu...</translation>
     </message>
     <message>
         <source>Open Recent</source>
-        <translation type="unfinished"></translation>
+        <translation>Son Kullanılanları Aç</translation>
     </message>
     <message>
         <source>Quick Access Toolbar</source>
-        <translation type="unfinished"></translation>
+        <translation>Hızlı Erişim Araç Çubuğu</translation>
     </message>
     <message>
         <source>Undo %1</source>
         <extracomment>%1 is the action name/description (e.g. move, delete, ...) to undo.</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Geri Al: %1</translation>
     </message>
     <message>
         <source>Redo %1</source>
         <extracomment>%1 is the action name/description (e.g. move, delete, ...) to redo.</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Yinele: %1</translation>
     </message>
     <message>
         <source>Center Both</source>
-        <translation type="unfinished"></translation>
+        <translation>Her İki Yönde Ortala</translation>
     </message>
     <message>
         <source>Center objects in label</source>
-        <translation type="unfinished"></translation>
+        <translation>Nesneleri etikette ortala</translation>
     </message>
 </context>
 <context>
     <name>glabels::MergeView</name>
     <message>
         <source>Merge</source>
-        <translation type="unfinished"></translation>
+        <translation>Birleştirme</translation>
     </message>
     <message>
         <source>Select merge file</source>
-        <translation type="unfinished"></translation>
+        <translation>Birleştirme dosyasını seç</translation>
     </message>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm dosyalar (*)</translation>
     </message>
 </context>
 <context>
@@ -1948,11 +2063,11 @@
     </message>
     <message>
         <source>Default</source>
-        <translation type="unfinished"></translation>
+        <translation>Varsayılan</translation>
     </message>
     <message>
         <source>Original size</source>
-        <translation type="unfinished"></translation>
+        <translation>Orijinal boyut</translation>
     </message>
     <message>
         <source>Box object properties</source>
@@ -1960,15 +2075,15 @@
     </message>
     <message>
         <source>line/fill</source>
-        <translation type="unfinished"></translation>
+        <translation>Çizgi/Dolgu</translation>
     </message>
     <message>
         <source>position/size</source>
-        <translation type="unfinished"></translation>
+        <translation>Konum/Boyut</translation>
     </message>
     <message>
         <source>shadow</source>
-        <translation type="unfinished"></translation>
+        <translation>Gölge</translation>
     </message>
     <message>
         <source>Ellipse object properties</source>
@@ -1980,7 +2095,7 @@
     </message>
     <message>
         <source>image</source>
-        <translation type="unfinished"></translation>
+        <translation>Resim</translation>
     </message>
     <message>
         <source>Line object properties</source>
@@ -1988,11 +2103,11 @@
     </message>
     <message>
         <source>Text object properties</source>
-        <translation>Yazı nesnesi özellikleri</translation>
+        <translation>Metin nesnesi özellikleri</translation>
     </message>
     <message>
         <source>text</source>
-        <translation type="unfinished"></translation>
+        <translation>Metin</translation>
     </message>
     <message>
         <source>Barcode object properties</source>
@@ -2000,7 +2115,7 @@
     </message>
     <message>
         <source>barcode</source>
-        <translation type="unfinished"></translation>
+        <translation>Barkod</translation>
     </message>
     <message>
         <source>Object properties</source>
@@ -2016,11 +2131,11 @@
     </message>
     <message>
         <source>Image files (*.png *.jpg *.jpeg *.gif *.bmp *.pbm *.pgm *.ppm *.xbm *.xpm *.svg)</source>
-        <translation type="unfinished"></translation>
+        <translation>Resim dosyaları (*.png *.jpg *.jpeg *.gif *.bmp *.pbm *.pgm *.ppm *.xbm *.xpm *.svg)</translation>
     </message>
     <message>
         <source>All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>Tüm dosyalar (*)</translation>
     </message>
     <message>
         <source>PNG - Portable Network Graphics (*.png)</source>
@@ -2064,7 +2179,7 @@
     </message>
     <message>
         <source>gLabels - Select image file</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels - Resim dosyası seç</translation>
     </message>
     <message>
         <source>Set image</source>
@@ -2076,7 +2191,7 @@
     </message>
     <message>
         <source>Text</source>
-        <translation>Yazı</translation>
+        <translation>Metin</translation>
     </message>
     <message>
         <source>Shadow</source>
@@ -2084,7 +2199,7 @@
     </message>
     <message>
         <source>Position</source>
-        <translation>Pozisyon</translation>
+        <translation>Konum</translation>
     </message>
     <message>
         <source>Barcode</source>
@@ -2092,15 +2207,22 @@
     </message>
     <message>
         <source>Reset</source>
-        <translation type="unfinished"></translation>
+        <translation>Sıfırla</translation>
     </message>
     <message>
         <source>Insert substitution field</source>
-        <translation type="unfinished"></translation>
+        <translation>Veri alanı ekle</translation>
     </message>
     <message>
         <source>Use substitution field</source>
-        <translation type="unfinished"></translation>
+        <translation>Veri alanı kullan</translation>
+    </message>
+</context>
+<context>
+    <name>glabels::PreferencesDialog</name>
+    <message>
+        <source>Select startup directory</source>
+        <translation>Başlangıç dizinini seç</translation>
     </message>
 </context>
 <context>
@@ -2111,31 +2233,31 @@
     </message>
     <message>
         <source>(Will print a total of %1 items on %2 pages.)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Toplam %1 öğe %2 sayfaya yazdırılacak.)</translation>
     </message>
     <message>
         <source>(Will print a total of 1 item on 1 page.)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Toplam 1 öğe 1 sayfaya yazdırılacak.)</translation>
     </message>
     <message>
         <source>(Will print a total of %1 items on 1 page.)</source>
-        <translation type="unfinished"></translation>
+        <translation>(Toplam %1 öğe 1 sayfaya yazdırılacak.)</translation>
     </message>
     <message>
         <source>Print to file (PDF)</source>
-        <translation type="unfinished"></translation>
+        <translation>Dosyaya yazdır (PDF)</translation>
     </message>
     <message>
         <source>PDF files (*.pdf);;All files (*)</source>
-        <translation type="unfinished"></translation>
+        <translation>PDF dosyaları (*.pdf);;Tüm dosyalar (*)</translation>
     </message>
     <message>
         <source>%1 already exists.</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 zaten var.</translation>
     </message>
     <message>
         <source>Do you want to overwrite it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Üzerine yazmak istiyor musunuz?</translation>
     </message>
 </context>
 <context>
@@ -2146,41 +2268,41 @@
     </message>
     <message>
         <source>Product Rotate</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürünü döndür</translation>
     </message>
     <message>
         <source>Change Product</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürünü değiştir</translation>
     </message>
 </context>
 <context>
     <name>glabels::ReportBugDialog</name>
     <message>
         <source>How to Report a Bug</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata Nasıl Bildirilir?</translation>
     </message>
     <message>
         <source>To submit a bug report, click on the button below.  This will open a web browser to the gLabels github issue tracking page.</source>
-        <translation type="unfinished"></translation>
+        <translation>Hata raporu göndermek için aşağıdaki düğmeye tıklayın. Bu işlem web tarayıcısında gLabels GitHub hata izleme sayfasını açacaktır.</translation>
     </message>
     <message>
         <source>Be sure to include a detailed description of the problem and how to recreate it.  Attach any screenshots and/or example glabels project files that may illustrate the problem.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sorunun ayrıntılı bir açıklamasını ve nasıl yeniden oluşturulacağını eklediğinizden emin olun. Sorunu gösteren ekran görüntülerini ve/veya örnek gLabels proje dosyalarını ekleyin.</translation>
     </message>
     <message>
         <source>Before submitting a report, look through the existing issues for similar or related bugs.  If the issue has already been reported, please consider contributing to its report instead.  Otherwise, create a new issue report. Please paste the following information into the issue description.</source>
-        <translation type="unfinished"></translation>
+        <translation>Rapor göndermeden önce benzer veya ilgili hatalar için mevcut kayıtları inceleyin. Sorun zaten bildirilmişse yeni kayıt açmak yerine mevcut rapora katkıda bulunun. Aksi halde yeni bir hata raporu oluşturun. Lütfen aşağıdaki bilgileri rapor açıklamasına yapıştırın.</translation>
     </message>
 </context>
 <context>
     <name>glabels::SelectProductDialog</name>
     <message>
         <source>List View</source>
-        <translation type="unfinished"></translation>
+        <translation>Liste Görünümü</translation>
     </message>
     <message>
         <source>Grid View</source>
-        <translation type="unfinished"></translation>
+        <translation>Izgara Görünümü</translation>
     </message>
 </context>
 <context>
@@ -2194,127 +2316,131 @@
     <name>glabels::TemplateDesigner</name>
     <message>
         <source>Product Template Designer</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürün Şablonu Tasarımcısı</translation>
     </message>
     <message>
         <source>Roll</source>
-        <translation type="unfinished"></translation>
+        <translation>Rulo</translation>
     </message>
     <message>
         <source>Copy</source>
-        <translation>Kopayala</translation>
+        <translation>Kopya</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerApplyPage</name>
     <message>
         <source>Save Product Template</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürün Şablonunu Kaydet</translation>
     </message>
     <message>
         <source>Click &quot;Save&quot; to save your custom product template!</source>
-        <translation type="unfinished"></translation>
+        <translation>Özel ürün şablonunuzu kaydetmek için &quot;Kaydet&quot; düğmesine tıklayın!</translation>
+    </message>
+    <message>
+        <source>Save</source>
+        <translation>Kaydet</translation>
     </message>
     <message>
         <source>User product template (%1 %2) already exists.</source>
         <extracomment>%1 = brand name of product (e.g. Avery), %2 = part number of product (e.g. 5026).</extracomment>
-        <translation type="unfinished"></translation>
+        <translation>Kullanıcı ürün şablonu (%1 %2) zaten var.</translation>
     </message>
     <message>
         <source>Do you want to replace it?</source>
-        <translation type="unfinished"></translation>
+        <translation>Üzerine yazmak istiyor musunuz?</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerCdPage</name>
     <message>
         <source>Product Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürün Boyutu</translation>
     </message>
     <message>
         <source>Please adjust the size parameters of a single product item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen tek bir ürün öğesinin boyut parametrelerini ayarlayın.</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerContinuousPage</name>
     <message>
         <source>Unsupported Product Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Desteklenmeyen Ürün Stili</translation>
     </message>
     <message>
         <source>Continuous tape product templates are not currently supported by the Product Template Designer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Sürekli şerit ürün şablonları şu anda Ürün Şablonu Tasarımcısı tarafından desteklenmemektedir.</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerEllipsePage</name>
     <message>
         <source>Product Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürün Boyutu</translation>
     </message>
     <message>
         <source>Please adjust the size parameters of a single product item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen tek bir ürün öğesinin boyut parametrelerini ayarlayın.</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerIntroPage</name>
     <message>
         <source>Welcome</source>
-        <translation>Merhaba</translation>
+        <translation>Hoş Geldiniz</translation>
     </message>
     <message>
         <source>Welcome to the gLabels Product Template Designer.</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels Ürün Şablonu Tasarımcısına hoş geldiniz.</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerNLayoutsPage</name>
     <message>
         <source>Number of Layouts</source>
-        <translation>Düzenleme adeti</translation>
+        <translation>Düzen Sayısı</translation>
     </message>
     <message>
         <source>Please select the number of layouts required.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen gereken düzen sayısını seçin.</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerNamePage</name>
     <message>
         <source>Name and Description</source>
-        <translation>İsim ve Tanım</translation>
+        <translation>Ad ve Açıklama</translation>
     </message>
     <message>
         <source>Please enter the following identifying information about the product.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen ürünle ilgili aşağıdaki tanımlayıcı bilgileri girin.</translation>
     </message>
     <message>
         <source>Brand and part number match an existing built-in product template!</source>
-        <translation type="unfinished"></translation>
+        <translation>Marka ve parça numarası mevcut bir yerleşik ürün şablonuyla eşleşiyor!</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerOneLayoutPage</name>
     <message>
         <source>Layout</source>
-        <translation>Plan</translation>
+        <translation>Düzen</translation>
     </message>
     <message>
         <source>Please enter parameters for your single layout.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen tek düzeniniz için parametreleri girin.</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerPageSizePage</name>
     <message>
         <source>Page Size</source>
-        <translation>Sayfa boyutu</translation>
+        <translation>Sayfa Boyutu</translation>
     </message>
     <message>
         <source>Please select the product page size.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen ürün sayfa boyutunu seçin.</translation>
     </message>
     <message>
         <source>Other</source>
@@ -2322,97 +2448,97 @@
     </message>
     <message>
         <source>Roll</source>
-        <translation type="unfinished"></translation>
+        <translation>Rulo</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerPathPage</name>
     <message>
         <source>Unsupported Product Style</source>
-        <translation type="unfinished"></translation>
+        <translation>Desteklenmeyen Ürün Stili</translation>
     </message>
     <message>
         <source>Path based product templates are not currently supported by the Product Template Designer.</source>
-        <translation type="unfinished"></translation>
+        <translation>Yol tabanlı ürün şablonları şu anda Ürün Şablonu Tasarımcısı tarafından desteklenmemektedir.</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerRectPage</name>
     <message>
         <source>Product Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürün Boyutu</translation>
     </message>
     <message>
         <source>Please adjust the size parameters of a single product item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen tek bir ürün öğesinin boyut parametrelerini ayarlayın.</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerRoundPage</name>
     <message>
         <source>Product Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürün Boyutu</translation>
     </message>
     <message>
         <source>Please adjust the size parameters of a single product item.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen tek bir ürün öğesinin boyut parametrelerini ayarlayın.</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerShapePage</name>
     <message>
         <source>Product Shape</source>
-        <translation type="unfinished"></translation>
+        <translation>Ürün Şekli</translation>
     </message>
     <message>
         <source>Please select the basic product shape.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen temel ürün şeklini seçin.</translation>
     </message>
 </context>
 <context>
     <name>glabels::TemplateDesignerTwoLayoutPage</name>
     <message>
         <source>Layouts</source>
-        <translation type="unfinished"></translation>
+        <translation>Düzenler</translation>
     </message>
     <message>
         <source>Please enter parameters for your two layouts.</source>
-        <translation type="unfinished"></translation>
+        <translation>Lütfen iki düzeniniz için parametreleri girin.</translation>
     </message>
 </context>
 <context>
     <name>glabels::VariablesView</name>
     <message>
         <source>Variables</source>
-        <translation type="unfinished"></translation>
+        <translation>Değişkenler</translation>
     </message>
     <message>
         <source>Name</source>
-        <translation type="unfinished"></translation>
+        <translation>Ad</translation>
     </message>
     <message>
         <source>Type</source>
-        <translation type="unfinished"></translation>
+        <translation>Tür</translation>
     </message>
     <message>
         <source>Increment</source>
-        <translation type="unfinished"></translation>
+        <translation>Artış</translation>
     </message>
     <message>
         <source>Step Size</source>
-        <translation type="unfinished"></translation>
+        <translation>Adım Boyutu</translation>
     </message>
     <message>
         <source>Add Variable</source>
-        <translation type="unfinished"></translation>
+        <translation>Değişken Ekle</translation>
     </message>
     <message>
         <source>Edit Variable</source>
-        <translation type="unfinished"></translation>
+        <translation>Değişkeni Düzenle</translation>
     </message>
     <message>
         <source>Value</source>
-        <translation type="unfinished"></translation>
+        <translation>Değer</translation>
     </message>
 </context>
 <context>
@@ -2435,11 +2561,11 @@
     </message>
     <message>
         <source>POSTNET (any)</source>
-        <translation type="unfinished"></translation>
+        <translation>POSTNET (herhangi biri)</translation>
     </message>
     <message>
         <source>POSTNET-5 (ZIP only)</source>
-        <translation type="unfinished"></translation>
+        <translation>POSTNET-5 (yalnızca ZIP)</translation>
     </message>
     <message>
         <source>POSTNET-9 (ZIP+4)</source>
@@ -2455,7 +2581,7 @@
     </message>
     <message>
         <source>USPS Intelligent Mail</source>
-        <translation type="unfinished"></translation>
+        <translation>USPS Intelligent Mail</translation>
     </message>
     <message>
         <source>IEC16022 (DataMatrix)</source>
@@ -2463,7 +2589,7 @@
     </message>
     <message>
         <source>EAN (any)</source>
-        <translation type="unfinished"></translation>
+        <translation>EAN (herhangi biri)</translation>
     </message>
     <message>
         <source>EAN-8</source>
@@ -2531,7 +2657,7 @@
     </message>
     <message>
         <source>Interleaved 2 of 5</source>
-        <translation type="unfinished"></translation>
+        <translation>Interleaved 2 of 5</translation>
     </message>
     <message>
         <source>Codabar</source>
@@ -2587,15 +2713,15 @@
     </message>
     <message>
         <source>Code 2 of 5 IATA</source>
-        <translation type="unfinished"></translation>
+        <translation>Code 2 of 5 IATA</translation>
     </message>
     <message>
         <source>Code 2 of 5 Data Logic</source>
-        <translation type="unfinished"></translation>
+        <translation>Code 2 of 5 Data Logic</translation>
     </message>
     <message>
         <source>Code 32 (Italian Pharmacode)</source>
-        <translation type="unfinished"></translation>
+        <translation>Code 32 (İtalyan Pharmacode)</translation>
     </message>
     <message>
         <source>Code 49</source>
@@ -2603,7 +2729,7 @@
     </message>
     <message>
         <source>Code 128 (Mode C suppression)</source>
-        <translation>Code 128 (Mode C supression)</translation>
+        <translation>Code 128 (Mod C bastırmalı)</translation>
     </message>
     <message>
         <source>DAFT Code</source>
@@ -2638,6 +2764,14 @@
         <translation>GS1-128</translation>
     </message>
     <message>
+        <source>GS1 DataBar Limited</source>
+        <translation>GS1 DataBar Limited</translation>
+    </message>
+    <message>
+        <source>GS1 DataBar Expanded</source>
+        <translation>GS1 DataBar Expanded</translation>
+    </message>
+    <message>
         <source>HIBC Code 128</source>
         <translation>HIBC Code 128</translation>
     </message>
@@ -2667,11 +2801,11 @@
     </message>
     <message>
         <source>Japanese Postal</source>
-        <translation type="unfinished"></translation>
+        <translation>Japanese Postal</translation>
     </message>
     <message>
         <source>Korean Postal</source>
-        <translation type="unfinished"></translation>
+        <translation>Korean Postal</translation>
     </message>
     <message>
         <source>LOGMARS</source>
@@ -2703,7 +2837,7 @@
     </message>
     <message>
         <source>Pharmacode 2-track</source>
-        <translation type="unfinished"></translation>
+        <translation>Pharmacode 2-track</translation>
     </message>
     <message>
         <source>QR Code</source>
@@ -2723,11 +2857,11 @@
     </message>
     <message>
         <source>Aztec Runes</source>
-        <translation type="unfinished"></translation>
+        <translation>Aztec Runes</translation>
     </message>
     <message>
         <source>CEPNet (Brazilian Post)</source>
-        <translation type="unfinished"></translation>
+        <translation>CEPNet (Brezilya Postası)</translation>
     </message>
     <message>
         <source>Codablock-F</source>
@@ -2735,19 +2869,19 @@
     </message>
     <message>
         <source>Code 2 of 5 Standard</source>
-        <translation type="unfinished"></translation>
+        <translation>Code 2 of 5 Standard</translation>
     </message>
     <message>
         <source>GS1 DataBar Stacked</source>
-        <translation type="unfinished"></translation>
+        <translation>GS1 DataBar Stacked</translation>
     </message>
     <message>
         <source>GS1 DataBar Stacked Omni.</source>
-        <translation type="unfinished"></translation>
+        <translation>GS1 DataBar Stacked Omni.</translation>
     </message>
     <message>
         <source>GS1 DataBar Expanded Stacked</source>
-        <translation type="unfinished"></translation>
+        <translation>GS1 DataBar Expanded Stacked</translation>
     </message>
     <message>
         <source>HIBC MicroPDF417</source>
@@ -2775,7 +2909,7 @@
     </message>
     <message>
         <source>Code 2 of 5 Industrial</source>
-        <translation type="unfinished"></translation>
+        <translation>Code 2 of 5 Industrial</translation>
     </message>
     <message>
         <source>DotCode</source>
@@ -2787,7 +2921,7 @@
     </message>
     <message>
         <source>GS1 DataBar Omnidirectional</source>
-        <translation type="unfinished"></translation>
+        <translation>GS1 DataBar Omnidirectional</translation>
     </message>
     <message>
         <source>Han Xin</source>
@@ -2807,7 +2941,7 @@
     </message>
     <message>
         <source>Royal Mail 4-State Mailmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Royal Mail 4-State Mailmark</translation>
     </message>
     <message>
         <source>UPU S10</source>
@@ -2815,19 +2949,19 @@
     </message>
     <message>
         <source>FIM (Facing ID Mark)</source>
-        <translation type="unfinished"></translation>
+        <translation>FIM (Yön Tanımlama İşareti)</translation>
     </message>
     <message>
         <source>rMQR (Rectangular Micro QR)</source>
-        <translation type="unfinished"></translation>
+        <translation>rMQR (Dikdörtgen Micro QR)</translation>
     </message>
     <message>
         <source>Royal Mail 4-State Customer</source>
-        <translation type="unfinished"></translation>
+        <translation>Royal Mail 4-State Customer</translation>
     </message>
     <message>
         <source>VIN (Vehicle ID Number)</source>
-        <translation type="unfinished"></translation>
+        <translation>VIN (Araç Şasi Numarası)</translation>
     </message>
     <message>
         <source>HIBC Codablock-F</source>
@@ -2835,7 +2969,7 @@
     </message>
     <message>
         <source>Royal Mail 2-D Mailmark</source>
-        <translation type="unfinished"></translation>
+        <translation>Royal Mail 2-D Mailmark</translation>
     </message>
     <message>
         <source>BC412 (SEMI TI-95)</source>
@@ -2853,7 +2987,7 @@
     <name>glabels::model::ModelBarcodeObject</name>
     <message>
         <source>No barcode data</source>
-        <translation type="unfinished"></translation>
+        <translation>Barkod verisi yok</translation>
     </message>
     <message>
         <source>Invalid barcode data</source>
@@ -2864,25 +2998,29 @@
     <name>glabels::model::ModelImageObject</name>
     <message>
         <source>No image</source>
-        <translation type="unfinished"></translation>
+        <translation>Resim yok</translation>
     </message>
 </context>
 <context>
     <name>glabels::model::ModelTextObject</name>
     <message>
         <source>Text</source>
-        <translation>Yazı</translation>
+        <translation>Metin</translation>
     </message>
 </context>
 <context>
     <name>main</name>
     <message>
         <source>gLabels Label Designer</source>
-        <translation type="unfinished"></translation>
+        <translation>gLabels Etiket Tasarımcısı</translation>
+    </message>
+    <message>
+        <source>More detailed version information.</source>
+        <translation>Daha ayrıntılı sürüm bilgisi.</translation>
     </message>
     <message>
         <source>gLabels project files to open, optionally.</source>
-        <translation type="unfinished"></translation>
+        <translation>İsteğe bağlı olarak açılacak gLabels proje dosyaları.</translation>
     </message>
 </context>
 </TS>

@@ -7,6 +7,8 @@ set (merge_sources
   Factory.cpp
   Record.cpp
   Merge.cpp
+  MemberDatabase.cpp
+  MemberDb.cpp
   None.cpp
   Text.cpp
   TextCsv.cpp
@@ -21,6 +23,7 @@ set (merge_sources
 
 set (merge_qobject_headers
   Merge.hpp
+  MemberDatabase.hpp
 )
 
 qt6_wrap_cpp (merge_moc_sources ${merge_qobject_headers})
@@ -43,4 +46,5 @@ target_include_directories (Merge
 
 target_link_libraries (Merge
   Qt6::Core
+  Qt6::Sql
 )

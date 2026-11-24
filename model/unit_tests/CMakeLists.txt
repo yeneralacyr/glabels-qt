@@ -1,6 +1,14 @@
 if (Qt6Test_FOUND)
 
   #=======================================
+  # Test MemberDatabase / MemberDb merge backend
+  #=======================================
+  qt6_wrap_cpp (TestMemberDatabase_moc_sources TestMemberDatabase.hpp)
+  add_executable (TestMemberDatabase TestMemberDatabase.cpp ${TestMemberDatabase_moc_sources})
+  target_link_libraries (TestMemberDatabase Model Qt6::Test Qt6::Sql)
+  add_test (NAME MemberDatabase COMMAND TestMemberDatabase)
+
+  #=======================================
   # Test SubstitutionField class
   #=======================================
   qt6_wrap_cpp (TestSubstitutionField_moc_sources TestSubstitutionField.hpp)

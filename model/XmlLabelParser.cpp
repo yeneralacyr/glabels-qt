@@ -752,7 +752,11 @@ namespace glabels::model
                 switch ( merge::Factory::idToType( id ) )
                 {
                 case merge::Factory::NONE:
+                        break;
+
                 case merge::Factory::FIXED:
+                        // Built-in sources (e.g. member database) still need loading
+                        merge->setSource( src );
                         break;
 
                 case merge::Factory::FILE:

@@ -379,10 +379,10 @@ namespace glabels::barcode
                 registerStyle( "rss14", "zint", tr("GS1 DataBar Omnidirectional"),
                                true, true, true, false, "1234567890123", true, 13 );
 
-                registerStyle( "rssltd", "zint", "GS1 DataBar Limited",
+                registerStyle( "rssltd", "zint", tr("GS1 DataBar Limited"),
                                true, true, true, false, "1234567890123", true, 13 );
 
-                registerStyle( "rssexp", "zint", "GS1 DataBar Expanded",
+                registerStyle( "rssexp", "zint", tr("GS1 DataBar Expanded"),
                                true, true, true, false, "[01]12345678901231", false, 18 );
 
                 registerStyle( "rsss", "zint", tr("GS1 DataBar Stacked"),

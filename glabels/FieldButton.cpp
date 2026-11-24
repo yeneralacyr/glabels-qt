@@ -59,7 +59,7 @@ namespace glabels
                 }
                 if ( merge->keys().empty() )
                 {
-                        auto* action = mMenu.addAction( "None" );
+                        auto* action = mMenu.addAction( tr("None") );
                         action->setEnabled( false );
                 }
 
@@ -72,7 +72,7 @@ namespace glabels
                 }
                 if ( variables.keys().empty() )
                 {
-                        auto* action = mMenu.addAction( "None" );
+                        auto* action = mMenu.addAction( tr("None") );
                         action->setEnabled( false );
                 }
 

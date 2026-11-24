@@ -21,6 +21,7 @@
 
 #include "Factory.hpp"
 
+#include "MemberDb.hpp"
 #include "None.hpp"
 #include "TextCsv.hpp"
 #include "TextCsvKeys.hpp"
@@ -92,6 +93,11 @@ namespace glabels::merge
                                  tr("Text: Semicolon Separated Values, keys on line 1"),
                                  FILE,
                                  &TextSemicolonKeys::create );
+
+                registerBackend( MemberDb::id(),
+                                 QStringLiteral( "Üye veritabanı" ),
+                                 FIXED,
+                                 &MemberDb::create );
         }
 
 

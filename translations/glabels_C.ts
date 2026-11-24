@@ -1413,6 +1413,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>None</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Variables</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2334,6 +2338,10 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <source>Save</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>User product template (%1 %2) already exists.</source>
         <extracomment>%1 = brand name of product (e.g. Avery), %2 = part number of product (e.g. 5026).</extracomment>
         <translation type="unfinished"></translation>
@@ -2753,6 +2761,14 @@
     </message>
     <message>
         <source>GS1-128</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GS1 DataBar Limited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>GS1 DataBar Expanded</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
